@@ -33,9 +33,14 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.25rem 1.5rem;
+}
+
+.userStatusRow {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .nameCustomCard label {
@@ -49,23 +54,51 @@
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-top: 0.35rem;
 }
 
 .nameInputRow input {
   padding: 0.65rem 1rem;
   background-color: var(--bg-secondary);
-  border: 1.5px solid var(--accent-ocean);
+  border: 1.5px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
-  min-width: 280px;
+  min-width: 260px;
   outline: none;
+}
+
+.nameInputRow input:focus {
+  border-color: var(--accent-ocean);
 }
 
 .nameHint {
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+.currentTierStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  background-color: var(--bg-secondary);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.tierLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.currentTierStatus strong {
+  font-size: 0.95rem;
+  font-family: var(--font-mono);
 }
 
 .catalogGrid {
@@ -85,14 +118,16 @@
   transition: all var(--transition-fast);
 }
 
-.diplomaCard:hover {
-  border-color: var(--accent-ocean);
-}
-
 .highestCard {
   border: 1.5px solid var(--stage-6-gold);
   background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, rgba(14, 17, 22, 0.8) 100%);
   box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+}
+
+.lockedCard {
+  opacity: 0.65;
+  background-color: rgba(22, 27, 34, 0.4);
+  border-style: dashed;
 }
 
 .cardHeader {
@@ -112,9 +147,10 @@
   text-transform: uppercase;
 }
 
-.highestBadge {
-  color: var(--stage-6-gold);
-  border: 1px solid var(--stage-6-gold);
+.lockedBadgeLabel {
+  color: var(--text-muted);
+  background-color: transparent;
+  border: 1px solid var(--border-subtle);
 }
 
 .certTypeSmall {
@@ -167,9 +203,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
+  background-color: var(--accent-ocean);
+  border: none;
+  color: #fff;
   padding: 0.75rem 1.25rem;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
@@ -179,19 +215,32 @@
 }
 
 .downloadBtn:hover:not(:disabled) {
-  background-color: var(--accent-ocean);
-  color: #fff;
+  opacity: 0.9;
 }
 
 .highestBtn {
   background-color: var(--stage-6-gold);
   color: #000;
-  border: none;
 }
 
 .highestBtn:hover:not(:disabled) {
   background-color: #e5bd3d;
-  color: #000;
+}
+
+.lockedBtn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: not-allowed;
 }
 
 .codeSuccessBox {

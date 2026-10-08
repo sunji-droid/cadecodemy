@@ -9,7 +9,7 @@ import {
   Award, 
   Sparkles, 
   GraduationCap,
-  Layers,
+  Lock,
   ChevronRight
 } from 'lucide-react';
 import styles from './CertificatesView.module.css';
@@ -20,36 +20,55 @@ interface MasterTrackOption {
   type: 'Track Completion' | 'Stage Milestone' | 'Master Academy';
   description: string;
   badgeLabel: string;
+  minStageId: number; // 1 = Seedling, 2 = Sprout, 3 = Builder, 4 = Analyst, 5 = Architect, 6 = Master
+  requiredXp: number;
 }
 
 const CERTIFICATE_CATALOG: MasterTrackOption[] = [
   {
-    id: 'master_grand',
-    title: 'Master of Full-Stack Software Engineering & Health Informatics',
-    type: 'Master Academy',
-    description: 'The highest institutional credential awarded by CadeCodemy. Certifies comprehensive mastery across all 5 languages, distributed system architectures, and epidemiological telemetry pipelines.',
-    badgeLabel: 'HIGHEST INSTITUTIONAL ACADEMIC DIPLOMA'
+    id: 'stage_1',
+    title: 'Stage 1: Seedling of Code Milestone',
+    type: 'Stage Milestone',
+    description: 'Conferred upon mastering fundamental computational syntax, variable memory bindings, and first-line program execution.',
+    badgeLabel: 'STAGE 1 FOUNDATION CREDENTIAL',
+    minStageId: 1,
+    requiredXp: 0
   },
   {
     id: 'python_track',
     title: 'Professional Python Software Architecture & Data Science',
     type: 'Track Completion',
-    description: 'Certifies mastery in Python 3, functional data pipelines, automated clinical denominator calculations, and object-oriented architecture.',
-    badgeLabel: 'TRACK MASTERY DIPLOMA'
+    description: 'Requires completion of the Python Track and defense of the epidemiological denominator capstone pipeline.',
+    badgeLabel: 'TRACK MASTERY DIPLOMA',
+    minStageId: 3,
+    requiredXp: 2500
   },
   {
     id: 'sql_track',
     title: 'Relational Database Engineering & Analytical Forensics',
     type: 'Track Completion',
-    description: 'Certifies advanced relational schema modeling, Common Table Expressions (CTEs), window functions, and forensic data audits.',
-    badgeLabel: 'TRACK MASTERY DIPLOMA'
+    description: 'Requires completion of the Relational SQL Track and cracking The Great Molepolole Cold-Chain Mystery.',
+    badgeLabel: 'TRACK MASTERY DIPLOMA',
+    minStageId: 4,
+    requiredXp: 5000
   },
   {
     id: 'stage_6',
     title: 'Stage 6: Master of the Systems Architecture Milestone',
     type: 'Stage Milestone',
-    description: 'Certifies attainment of Stage 6 (15,000 XP) and defense of senior architectural pull requests.',
-    badgeLabel: 'STAGE 6 HONORS MILESTONE'
+    description: 'Requires attaining Stage 6 through verified XP and passing senior architectural pull request audits.',
+    badgeLabel: 'STAGE 6 HONORS MILESTONE',
+    minStageId: 6,
+    requiredXp: 15000
+  },
+  {
+    id: 'master_grand',
+    title: 'Master of Full-Stack Software Engineering & Health Informatics',
+    type: 'Master Academy',
+    description: 'The supreme institutional credential of CadeCodemy. Unlocked exclusively upon reaching Stage 6 Master tier (15,000 XP) and completing all capstone defenses.',
+    badgeLabel: 'HIGHEST INSTITUTIONAL ACADEMIC DIPLOMA',
+    minStageId: 6,
+    requiredXp: 15000
   }
 ];
 
@@ -58,25 +77,26 @@ export const CertificatesView: React.FC = () => {
   const xp = getTotalXP(xpEvents);
   const currentStage = getCurrentStage(xp);
 
-  const [selectedCert, setSelectedCert] = useState<MasterTrackOption>(CERTIFICATE_CATALOG[0]);
   const [recipientName, setRecipientName] = useState(profile.name || 'Kabo Merapelo Onamile');
-  const [generating, setGenerating] = useState(false);
+  const [generatingId, setGeneratingId] = useState<string | null>(null);
   const [issuedCode, setIssuedCode] = useState<string | null>(null);
 
   const handleDownloadDiploma = async (cert: MasterTrackOption) => {
-    setGenerating(true);
+    // Progression check: Cannot generate if current stage is below required tier
+    if (currentStage.id < cert.minStageId) return;
+
+    setGeneratingId(cert.id);
     const code = generateVerificationCode(cert.id);
     setIssuedCode(code);
 
     const pdfBytes = await createCertificatePDF({
-      learnerName: recipientName.trim() || 'Kabo Merapelo Onamile',
+      learnerName: recipientName.trim() || profile.name || 'Kabo Merapelo Onamile',
       trackOrStageTitle: cert.title,
       type: cert.type,
       dateStr: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
       verificationCode: code
     });
 
-    // Trigger download
     const blob = new Blob([pdfBytes as any], { type: 'application/pdf' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -86,7 +106,7 @@ export const CertificatesView: React.FC = () => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    setGenerating(false);
+    setGeneratingId(null);
   };
 
   return (
@@ -95,35 +115,47 @@ export const CertificatesView: React.FC = () => {
         <div className={styles.badge}>INSTITUTIONAL CREDENTIALING PORTAL</div>
         <h1>Official Diplomas &amp; Degrees of Mastery</h1>
         <p className={styles.lead}>
-          Generate, preview, and download cryptographically signed, A4 landscape university-grade diplomas with gold filigree and verification QR seals.
+          Credentials reflect earned institutional progression. Higher diplomas unlock automatically as you complete tracks, defend master capstones, and advance through the Six Stages.
         </p>
       </header>
 
       {/* Recipient Customization Bar */}
       <div className={styles.nameCustomCard}>
-        <label>Candidate Full Name on Diploma:</label>
-        <div className={styles.nameInputRow}>
-          <input
-            type="text"
-            value={recipientName}
-            onChange={(e) => setRecipientName(e.target.value)}
-            placeholder="e.g. Kabo Merapelo Onamile"
-          />
-          <span className={styles.nameHint}>This exact name will be engraved onto the vector diploma.</span>
+        <div className={styles.userStatusRow}>
+          <div>
+            <label>Candidate Full Name on Diploma:</label>
+            <div className={styles.nameInputRow}>
+              <input
+                type="text"
+                value={recipientName}
+                onChange={(e) => setRecipientName(e.target.value)}
+                placeholder="e.g. Kabo Merapelo Onamile"
+              />
+              <span className={styles.nameHint}>Engraved directly onto earned PDF diplomas.</span>
+            </div>
+          </div>
+          <div className={styles.currentTierStatus}>
+            <span className={styles.tierLabel}>YOUR CURRENT STATUS</span>
+            <strong style={{ color: currentStage.themeColor }}>
+              Stage {currentStage.id}: {currentStage.name} ({xp.toLocaleString()} XP)
+            </strong>
+          </div>
         </div>
       </div>
 
-      {/* Diploma Catalog Grid */}
+      {/* Diploma Catalog Grid with Strict Lock Guards */}
       <div className={styles.catalogGrid}>
         {CERTIFICATE_CATALOG.map((cert) => {
-          const isHighest = cert.id === 'master_grand';
+          const isUnlocked = currentStage.id >= cert.minStageId;
+          const isGenerating = generatingId === cert.id;
+
           return (
             <div 
               key={cert.id} 
-              className={`${styles.diplomaCard} ${isHighest ? styles.highestCard : ''}`}
+              className={`${styles.diplomaCard} ${!isUnlocked ? styles.lockedCard : ''} ${isUnlocked && cert.id === 'master_grand' ? styles.highestCard : ''}`}
             >
               <div className={styles.cardHeader}>
-                <span className={`${styles.badgeLabel} ${isHighest ? styles.highestBadge : ''}`}>
+                <span className={`${styles.badgeLabel} ${!isUnlocked ? styles.lockedBadgeLabel : ''}`}>
                   {cert.badgeLabel}
                 </span>
                 <span className={styles.certTypeSmall}>{cert.type}</span>
@@ -134,28 +166,35 @@ export const CertificatesView: React.FC = () => {
 
               <div className={styles.diplomaDetails}>
                 <div className={styles.detailRow}>
-                  <span>Accreditation Standard:</span>
-                  <strong>BQA NCQF Level 5 &amp; Harvard CS50 Aligned</strong>
+                  <span>Required Tier:</span>
+                  <strong>Stage {cert.minStageId}+ ({cert.requiredXp.toLocaleString()} XP)</strong>
                 </div>
                 <div className={styles.detailRow}>
                   <span>Signatory:</span>
                   <strong>Kabo Merapelo Onamile (Director)</strong>
                 </div>
                 <div className={styles.detailRow}>
-                  <span>Security:</span>
+                  <span>Verification:</span>
                   <strong>QR Cryptographic Ledger (/verify)</strong>
                 </div>
               </div>
 
               <div className={styles.cardActions}>
-                <button
-                  className={`${styles.downloadBtn} ${isHighest ? styles.highestBtn : ''}`}
-                  onClick={() => handleDownloadDiploma(cert)}
-                  disabled={generating}
-                >
-                  <Download size={16} />
-                  <span>{generating ? 'Generating PDF...' : 'Download Official Master Diploma (PDF)'}</span>
-                </button>
+                {isUnlocked ? (
+                  <button
+                    className={`${styles.downloadBtn} ${cert.id === 'master_grand' ? styles.highestBtn : ''}`}
+                    onClick={() => handleDownloadDiploma(cert)}
+                    disabled={isGenerating}
+                  >
+                    <Download size={16} />
+                    <span>{isGenerating ? 'Compiling PDF...' : 'Download Official Diploma (PDF)'}</span>
+                  </button>
+                ) : (
+                  <button className={styles.lockedBtn} disabled>
+                    <Lock size={15} />
+                    <span>Locked · Requires Stage {cert.minStageId} ({cert.requiredXp.toLocaleString()} XP)</span>
+                  </button>
+                )}
               </div>
             </div>
           );
@@ -167,7 +206,7 @@ export const CertificatesView: React.FC = () => {
           <ShieldCheck size={20} className={styles.shieldIcon} />
           <div>
             <strong>Diploma Generated Successfully!</strong>
-            <div>Verification Code: <code>{issuedCode}</code>. Test it live anytime on the <a href="#/verify">Verification Ledger</a>.</div>
+            <div>Verification Code: <code>{issuedCode}</code>. Verify anytime on the <a href="#/verify">Verification Ledger</a>.</div>
           </div>
         </div>
       )}
@@ -176,7 +215,7 @@ export const CertificatesView: React.FC = () => {
       <section className={styles.verifyInfoBox}>
         <h3>Cryptographic Verification Notice</h3>
         <p>
-          Every credential generated by CadeCodemy carries a deterministic hash and QR code that scans directly to our public ledger. You can inspect any verification code on the{' '}
+          Every credential generated by CadeCodemy carries an immutable hash and QR code that scans directly to our public ledger. You can inspect any verification code on the{' '}
           <a href="#/verify" className={styles.inlineLink}>
             Verification Portal <ExternalLink size={12} />
           </a>.
