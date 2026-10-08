@@ -4,21 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CadeCodemy — Redirecting</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #0e1116;
+        color: #f0f6fc;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+      }
+      .spinner {
+        width: 44px;
+        height: 44px;
+        border: 3px solid rgba(242, 100, 25, 0.2);
+        border-top-color: #f26419;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-bottom: 1.25rem;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      h1 { font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem; }
+      p { font-size: 0.9rem; color: #8b949e; margin: 0 0 1.25rem; }
+      a {
+        display: inline-block;
+        background-color: #f26419;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 0.65rem 1.25rem;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+    </style>
     <script>
-      // Single Page App redirect for GitHub Pages
-      // If someone visits https://sunji-droid.github.io/cadecodemy/path, redirect to /cadecodemy/#/path
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' : '') +
-        l.search.slice(1).replace(/&/g, '~and~') +
-        l.hash
-      );
+      (function() {
+        var base = '/cadecodemy/';
+        var path = window.location.pathname;
+        if (path.indexOf(base) === 0) {
+          var sub = path.substring(base.length);
+          if (sub.charAt(0) === '/') sub = sub.substring(1);
+          var search = window.location.search || '';
+          var hash = window.location.hash || '';
+          var newUrl = window.location.origin + base + '#/' + sub + search + hash;
+          window.location.replace(newUrl);
+        } else {
+          window.location.replace(window.location.origin + base);
+        }
+      })();
     </script>
   </head>
   <body>
+    <div class="spinner"></div>
+    <h1>Launching CadeCodemy...</h1>
+    <p>Redirecting to your mobile curriculum...</p>
+    <a href="/cadecodemy/#/">Tap here if not redirected automatically</a>
   </body>
 </html>
