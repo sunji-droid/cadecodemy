@@ -8,7 +8,8 @@ import {
   Sparkles,
   FileCheck,
   User,
-  Info
+  Info,
+  Database
 } from 'lucide-react';
 import styles from './Navigation.module.css';
 
@@ -48,6 +49,10 @@ export const Navigation: React.FC = () => {
           <NavLink to="/stages" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Sparkles className={styles.navIcon} size={20} />
             <span>Stages & Perks</span>
+          </NavLink>
+          <NavLink to="/datasets" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <Database className={styles.navIcon} size={20} />
+            <span>Datasets (Stage 4)</span>
           </NavLink>
           <NavLink to="/badges" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Award className={styles.navIcon} size={20} />

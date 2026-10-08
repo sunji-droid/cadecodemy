@@ -11,6 +11,7 @@ import { CertificatesView } from './features/certificates/CertificatesView';
 import { ProfileView } from './features/profile/ProfileView';
 import { About } from './features/about/About';
 import { VerifyView } from './features/verify/VerifyView';
+import { DatasetsView } from './features/datasets/DatasetsView';
 
 export const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ export const App: React.FC = () => {
         <Route path="lesson/:lessonId" element={<LessonRunner />} />
         <Route path="playground" element={<Playground />} />
         <Route path="stages" element={<StagesView />} />
+        <Route path="datasets" element={<DatasetsView />} />
         <Route path="badges" element={<BadgesView />} />
         <Route path="certificates" element={<CertificatesView />} />
         <Route path="profile" element={<ProfileView />} />
