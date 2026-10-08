@@ -9,7 +9,8 @@ import {
   FileCheck,
   User,
   Info,
-  Database
+  Database,
+  Sliders
 } from 'lucide-react';
 import styles from './Navigation.module.css';
 
@@ -69,6 +70,10 @@ export const Navigation: React.FC = () => {
           <NavLink to="/profile" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <User className={styles.navIcon} size={20} />
             <span>Learner Profile</span>
+          </NavLink>
+          <NavLink to="/settings" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <Sliders className={styles.navIcon} size={20} />
+            <span>Settings</span>
           </NavLink>
           <NavLink to="/about" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Info className={styles.navIcon} size={20} />

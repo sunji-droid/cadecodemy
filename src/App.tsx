@@ -12,6 +12,7 @@ import { ProfileView } from './features/profile/ProfileView';
 import { About } from './features/about/About';
 import { VerifyView } from './features/verify/VerifyView';
 import { DatasetsView } from './features/datasets/DatasetsView';
+import { SettingsView } from './features/settings/SettingsView';
 
 export const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ export const App: React.FC = () => {
         <Route path="badges" element={<BadgesView />} />
         <Route path="certificates" element={<CertificatesView />} />
         <Route path="profile" element={<ProfileView />} />
+        <Route path="settings" element={<SettingsView />} />
         <Route path="about" element={<About />} />
         <Route path="verify" element={<VerifyView />} />
         <Route path="*" element={<PathView />} />
