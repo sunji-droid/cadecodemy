@@ -1,0 +1,303 @@
+.reviewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--stage-5-dusk);
+  background-color: var(--bg-card);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.scenarioTabs {
+  display: flex;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+}
+
+.tabBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tabBtn:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.activeTab {
+  border-color: var(--stage-5-dusk);
+  color: var(--stage-5-dusk);
+  background-color: var(--bg-card-hover);
+}
+
+.reviewWorkspace {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.diffPanel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.diffHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.prMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prIcon {
+  color: var(--accent-ocean);
+}
+
+.prTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.langTag {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.diffPre {
+  padding: 1.25rem;
+  background-color: var(--bg-code);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.critiqueInputBox {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inputLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.notesArea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+  resize: vertical;
+}
+
+.notesArea:focus {
+  border-color: var(--stage-5-dusk);
+}
+
+.submitReviewBtn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--stage-5-dusk);
+  color: #fff;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.submitReviewBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.benchmarkPanel {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--stage-5-dusk);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.benchmarkHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sparkleIcon {
+  color: var(--stage-5-dusk);
+}
+
+.benchmarkHeader h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.flawsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.flawCard {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.flawMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.severityBadge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.critical {
+  background-color: rgba(248, 113, 113, 0.2);
+  color: var(--accent-red);
+}
+
+.warning {
+  background-color: rgba(234, 179, 8, 0.2);
+  color: #eab308;
+}
+
+.style {
+  background-color: rgba(56, 189, 248, 0.2);
+  color: var(--accent-ocean);
+}
+
+.lineTag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.flawText {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.modelCritiqueBox {
+  background-color: var(--bg-secondary);
+  border-left: 3px solid var(--stage-5-dusk);
+  padding: 1rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.modelCritiqueBox h4 {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.modelCritiqueBox p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.lockedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 400px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  gap: 1rem;
+}
+
+.lockIconBox {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stage-5-dusk);
+}
+
+.lockedSub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

@@ -10,7 +10,9 @@ import {
   User,
   Info,
   Database,
-  Sliders
+  Sliders,
+  GitPullRequest,
+  ShieldAlert
 } from 'lucide-react';
 import styles from './Navigation.module.css';
 
@@ -56,6 +58,14 @@ export const Navigation: React.FC = () => {
           <NavLink to="/datasets" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Database className={styles.navIcon} size={20} />
             <span>Datasets (Stage 4)</span>
+          </NavLink>
+          <NavLink to="/review" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <GitPullRequest className={styles.navIcon} size={20} />
+            <span>Peer Review (Stage 5)</span>
+          </NavLink>
+          <NavLink to="/capstone/python" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <Award className={styles.navIcon} size={20} />
+            <span>Master Capstones</span>
           </NavLink>
           <NavLink to="/badges" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Award className={styles.navIcon} size={20} />

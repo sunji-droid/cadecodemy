@@ -13,6 +13,8 @@ import { About } from './features/about/About';
 import { VerifyView } from './features/verify/VerifyView';
 import { DatasetsView } from './features/datasets/DatasetsView';
 import { SettingsView } from './features/settings/SettingsView';
+import { CapstoneRunner } from './features/capstones/CapstoneRunner';
+import { CodeReviewView } from './features/review/CodeReviewView';
 
 export const App: React.FC = () => {
   return (
@@ -24,6 +26,8 @@ export const App: React.FC = () => {
         <Route path="playground" element={<Playground />} />
         <Route path="stages" element={<StagesView />} />
         <Route path="datasets" element={<DatasetsView />} />
+        <Route path="review" element={<CodeReviewView />} />
+        <Route path="capstone/:trackId" element={<CapstoneRunner />} />
         <Route path="badges" element={<BadgesView />} />
         <Route path="certificates" element={<CertificatesView />} />
         <Route path="profile" element={<ProfileView />} />
