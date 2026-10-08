@@ -1,0 +1,207 @@
+.pathContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.dailyCard {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-ember);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.dailyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dailyBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent-ember);
+}
+
+.dailyEst {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.dailyContent h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.dailyContent p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.dailyActionRow {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.startBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--accent-ember);
+  color: #FFFFFF;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+}
+
+.startBtn:hover {
+  background-color: var(--accent-ember-hover);
+  text-decoration: none;
+}
+
+.dailySubtext {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Zig-Zag Learning Path */
+.pathSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pathHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+}
+
+.pathHeader h2 {
+  font-size: 1.75rem;
+}
+
+.pathHeader p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.switchTrackLink {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--accent-ocean);
+}
+
+.nodesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.nodeRow {
+  display: flex;
+  width: 100%;
+}
+
+.alignLeft { justify-content: flex-start; }
+.alignCenter { justify-content: center; }
+.alignRight { justify-content: flex-end; }
+
+.lessonNode {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.lessonNode:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+}
+
+.completedNode {
+  border-left: 3px solid var(--stage-2-fern);
+}
+
+.nodeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nodeStage {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-ocean);
+  letter-spacing: 0.05em;
+}
+
+.nodeTime {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.nodeTitle {
+  font-size: 1.2rem;
+}
+
+.nodeObjective {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.nodeFooter {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.nodeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-ember);
+}
+
+.checkIcon {
+  color: var(--stage-2-fern);
+}
+
+@media (max-width: 768px) {
+  .alignLeft, .alignCenter, .alignRight {
+    justify-content: center;
+  }
+}

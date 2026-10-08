@@ -1,0 +1,33 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from './app/Layout';
+import { PathView } from './features/path/PathView';
+import { TracksView } from './features/courses/TracksView';
+import { LessonRunner } from './features/lessons/LessonRunner';
+import { Playground } from './features/playground/Playground';
+import { StagesView } from './features/stages/StagesView';
+import { BadgesView } from './features/badges/BadgesView';
+import { CertificatesView } from './features/certificates/CertificatesView';
+import { ProfileView } from './features/profile/ProfileView';
+import { About } from './features/about/About';
+import { VerifyView } from './features/verify/VerifyView';
+
+export const App: React.FC = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<PathView />} />
+        <Route path="tracks" element={<TracksView />} />
+        <Route path="lesson/:lessonId" element={<LessonRunner />} />
+        <Route path="playground" element={<Playground />} />
+        <Route path="stages" element={<StagesView />} />
+        <Route path="badges" element={<BadgesView />} />
+        <Route path="certificates" element={<CertificatesView />} />
+        <Route path="profile" element={<ProfileView />} />
+        <Route path="about" element={<About />} />
+        <Route path="verify" element={<VerifyView />} />
+        <Route path="*" element={<PathView />} />
+      </Route>
+    </Routes>
+  );
+};

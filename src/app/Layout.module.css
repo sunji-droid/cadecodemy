@@ -1,0 +1,32 @@
+.layoutContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+.mainWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 260px; /* Width of desktop sidebar */
+  min-height: 100vh;
+}
+
+.contentArea {
+  flex: 1;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .mainWrapper {
+    margin-left: 0;
+    padding-bottom: 70px; /* Space for mobile bottom bar */
+  }
+
+  .contentArea {
+    padding: 1.25rem 1rem;
+  }
+}

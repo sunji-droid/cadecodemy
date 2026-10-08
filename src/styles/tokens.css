@@ -1,0 +1,136 @@
+/* Fonts loaded locally from public/fonts to ensure zero runtime Google Fonts network requests and full offline PWA readiness */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/CormorantGaramond-Variable.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url('/fonts/PlusJakartaSans-Variable.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Variable.ttf') format('truetype');
+}
+
+:root {
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Stage Palette (Master Spec 6.1) */
+  --stage-1-sage: #94A89A;
+  --stage-2-fern: #4E8752;
+  --stage-3-ember: #F26419;
+  --stage-4-ocean: #2A7B9B;
+  --stage-5-dusk: #5A4E8C;
+  --stage-6-gold: #D4AF37;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
+
+/* Dark Theme (Default) */
+[data-theme='dark'], :root {
+  --bg-primary: #0E1116;
+  --bg-secondary: #161B22;
+  --bg-card: #1D232C;
+  --bg-card-hover: #262E3A;
+  --bg-code: #090B0E;
+
+  --border-subtle: #27303D;
+  --border-strong: #3D4A5E;
+
+  --text-primary: #F0F3F6;
+  --text-secondary: #9FAFC2;
+  --text-muted: #657487;
+
+  --accent-ember: #F26419;
+  --accent-ember-hover: #FA7530;
+  --accent-ocean: #38BDF8;
+  --accent-green: #34D399;
+  --accent-red: #F87171;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* Warm Paper Light Theme */
+[data-theme='light'] {
+  --bg-primary: #F6F3EC;
+  --bg-secondary: #EBE6DC;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FAF8F5;
+  --bg-code: #E5DFC8;
+
+  --border-subtle: #D8D1C2;
+  --border-strong: #B6AD9A;
+
+  --text-primary: #1C2127;
+  --text-secondary: #48525E;
+  --text-muted: #7E8B9B;
+
+  --accent-ember: #D94E07;
+  --accent-ember-hover: #B83E00;
+  --accent-ocean: #097B96;
+  --accent-green: #059669;
+  --accent-red: #DC2626;
+
+  --shadow-sm: 0 2px 4px rgba(44, 38, 25, 0.08);
+  --shadow-md: 0 4px 12px rgba(44, 38, 25, 0.12);
+  --shadow-lg: 0 8px 24px rgba(44, 38, 25, 0.16);
+}
+
+/* High Contrast Theme */
+[data-theme='high-contrast'] {
+  --bg-primary: #000000;
+  --bg-secondary: #111111;
+  --bg-card: #1A1A1A;
+  --bg-card-hover: #262626;
+  --bg-code: #000000;
+
+  --border-subtle: #888888;
+  --border-strong: #FFFFFF;
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #EEEEEE;
+  --text-muted: #CCCCCC;
+
+  --accent-ember: #FF8800;
+  --accent-ember-hover: #FFAA33;
+  --accent-ocean: #00CCFF;
+  --accent-green: #00FF88;
+  --accent-red: #FF4444;
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+}

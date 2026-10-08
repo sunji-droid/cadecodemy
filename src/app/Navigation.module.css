@@ -1,0 +1,154 @@
+.desktopSidebar {
+  width: 260px;
+  min-height: 100vh;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+}
+
+.brandContainer {
+  padding: 1.5rem 1.25rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.logoMark {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #1f2733, #0e1116);
+  border: 1.5px solid var(--accent-ember);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(242, 100, 25, 0.2);
+}
+
+.logoBracket {
+  color: var(--accent-ocean);
+  font-size: 0.85rem;
+}
+
+.logoC {
+  color: var(--accent-ember);
+  font-size: 1.15rem;
+}
+
+.brandMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.brandTagline {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.navMenu {
+  padding: 1.25rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow-y: auto;
+}
+
+.navSectionLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 0.75rem 0.5rem 0.25rem;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.navItem:hover {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.navItem.active {
+  background-color: var(--bg-card);
+  color: var(--accent-ember);
+  border-left: 3px solid var(--accent-ember);
+}
+
+.navIcon {
+  flex-shrink: 0;
+}
+
+/* Mobile Bottom Bar (Hidden on Desktop) */
+.mobileBottomNav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktopSidebar {
+    display: none;
+  }
+
+  .mobileBottomNav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-subtle);
+    z-index: 50;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+
+  .mobileNavItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 48px; /* WCAG 44px minimum tap target rule */
+    color: var(--text-muted);
+    font-size: 0.65rem;
+    font-weight: 600;
+    gap: 2px;
+    text-decoration: none;
+  }
+
+  .mobileNavItem.mobileActive {
+    color: var(--accent-ember);
+  }
+}

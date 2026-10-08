@@ -1,0 +1,173 @@
+.stagesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.currentCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-ember);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.currentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.currentStageTag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.xpTotalBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.xpLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.xpValue {
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--accent-ember);
+}
+
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.progressLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.progressBarBg {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  transition: width var(--transition-normal);
+}
+
+.stagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.stageCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-top: 3px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.activeCard {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-strong);
+}
+
+.lockedCard {
+  opacity: 0.7;
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stageNumber {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.passedIcon {
+  color: var(--stage-2-fern);
+}
+
+.lockIcon {
+  color: var(--text-muted);
+}
+
+.stageName {
+  font-size: 1.35rem;
+}
+
+.xpThreshold {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--accent-ocean);
+  font-weight: 600;
+}
+
+.stageDesc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.perkBox {
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.perkTitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.perkText {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}

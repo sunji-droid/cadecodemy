@@ -1,0 +1,323 @@
+.lessonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.lessonPaging {
+  color: var(--text-muted);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stageTag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-ocean);
+  background-color: var(--bg-card);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.estTag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.completedTag {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--stage-2-fern);
+  background-color: rgba(78, 135, 82, 0.15);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.objectiveText {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.tabsRow {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tabBtn {
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.tabBtn:hover {
+  color: var(--text-primary);
+}
+
+.activeTab {
+  color: var(--accent-ember);
+  border-bottom-color: var(--accent-ember);
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.explanationText p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.editorCard {
+  background-color: var(--bg-code);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.editorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.editorLang {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.runBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--accent-ember);
+  color: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.runBtn:hover:not(:disabled) {
+  background-color: var(--accent-ember-hover);
+}
+
+.codeTextarea {
+  width: 100%;
+  background-color: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 1rem;
+  border: none;
+  resize: vertical;
+  outline: none;
+}
+
+.outputBox {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0.75rem 1rem;
+}
+
+.outputTitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.outputPre {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  color: var(--accent-green);
+}
+
+.whyBox {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--accent-ocean);
+  padding: 0.75rem 1rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.exerciseInstruction h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+}
+
+.exerciseInstruction p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.successBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(78, 135, 82, 0.15);
+  border: 1px solid var(--stage-2-fern);
+  color: var(--stage-2-fern);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.quizList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.quizCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quizQuestion {
+  font-size: 1.05rem;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.optionItem:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.optionSelected {
+  border-color: var(--accent-ocean);
+  color: var(--text-primary);
+  background-color: var(--bg-card-hover);
+}
+
+.optionCorrect {
+  border-color: var(--stage-2-fern);
+  background-color: rgba(78, 135, 82, 0.2);
+  color: var(--text-primary);
+}
+
+.optionWrong {
+  border-color: var(--accent-red);
+  background-color: rgba(248, 113, 113, 0.15);
+}
+
+.optLetter {
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.quizExplanation {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.5rem;
+}
+
+.submitQuizBtn {
+  align-self: flex-start;
+  background-color: var(--accent-ember);
+  color: #fff;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.submitQuizBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quizDoneBanner {
+  font-size: 0.9rem;
+  color: var(--stage-2-fern);
+  font-weight: 600;
+}
+
+.lessonFooterNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.25rem;
+}
+
+.prevBtn, .nextBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--accent-ocean);
+  font-weight: 600;
+}
