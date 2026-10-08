@@ -20,6 +20,7 @@ import { AlgorithmsView } from './features/algorithms/AlgorithmsView';
 import { SortingVisualizerView } from './features/visualizer/SortingVisualizerView';
 import { CareerHubView } from './features/career/CareerHubView';
 import { GraphVisualizerView } from './features/graphs/GraphVisualizerView';
+import { ReferenceHubView } from './features/reference/ReferenceHubView';
 
 export const App: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ export const App: React.FC = () => {
         <Route path="visualizer" element={<SortingVisualizerView />} />
         <Route path="graphs" element={<GraphVisualizerView />} />
         <Route path="career" element={<CareerHubView />} />
+        <Route path="reference" element={<ReferenceHubView />} />
         <Route path="capstone/:trackId" element={<CapstoneRunner />} />
         <Route path="badges" element={<BadgesView />} />
         <Route path="certificates" element={<CertificatesView />} />
