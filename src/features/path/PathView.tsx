@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ALL_TRACKS } from '../../content';
 import { useStore } from '../../lib/store';
@@ -7,7 +7,9 @@ import styles from './PathView.module.css';
 
 export const PathView: React.FC = () => {
   const { completedLessons } = useStore();
-  const currentTrack = ALL_TRACKS[0]; // Python default
+  const [selectedTrackId, setSelectedTrackId] = useState<string>('python');
+  
+  const currentTrack = ALL_TRACKS.find(t => t.id === selectedTrackId) || ALL_TRACKS[0];
   const lessons = currentTrack.lessons;
 
   return (
@@ -41,12 +43,30 @@ export const PathView: React.FC = () => {
         </div>
       </section>
 
+      {/* Track Selection Switcher Bar */}
+      <div className={styles.trackSwitcherBar}>
+        <span className={styles.switcherLabel}>SWITCH LANGUAGE PATH:</span>
+        <div className={styles.trackPills}>
+          {ALL_TRACKS.map((t) => (
+            <button
+              key={t.id}
+              className={`${styles.trackPillBtn} ${selectedTrackId === t.id ? styles.activePill : ''}`}
+              onClick={() => setSelectedTrackId(t.id)}
+              style={selectedTrackId === t.id ? { borderColor: t.accentColor, color: t.accentColor } : {}}
+            >
+              <span className={styles.pillDot} style={{ backgroundColor: t.accentColor }} />
+              <span>{t.badge}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* The Visual Zig-Zag Learning Path */}
       <section className={styles.pathSection}>
         <div className={styles.pathHeader}>
           <div>
-            <h2>The Python Path</h2>
-            <p>From first variables to automated pipelines and data frames</p>
+            <h2>The {currentTrack.badge} Path</h2>
+            <p>{currentTrack.description}</p>
           </div>
           <Link to="/tracks" className={styles.switchTrackLink}>
             <BookOpen size={16} />

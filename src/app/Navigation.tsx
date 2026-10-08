@@ -18,17 +18,19 @@ export const Navigation: React.FC = () => {
     <>
       {/* Desktop Sidebar Navigation */}
       <aside className={styles.desktopSidebar}>
-        <div className={styles.brandContainer}>
-          <div className={styles.logoMark}>
-            <span className={styles.logoBracket}>&lt;</span>
-            <span className={styles.logoC}>C</span>
-            <span className={styles.logoBracket}>/&gt;</span>
+        <NavLink to="/" className={styles.brandLink} title="Return to Learning Path">
+          <div className={styles.brandContainer}>
+            <div className={styles.logoMark}>
+              <span className={styles.logoBracket}>&lt;</span>
+              <span className={styles.logoC}>C</span>
+              <span className={styles.logoBracket}>/&gt;</span>
+            </div>
+            <div className={styles.brandMeta}>
+              <div className={styles.brandName}>CadeCodemy</div>
+              <div className={styles.brandTagline}>From first line to full mastery</div>
+            </div>
           </div>
-          <div className={styles.brandMeta}>
-            <div className={styles.brandName}>CadeCodemy</div>
-            <div className={styles.brandTagline}>From first line to full mastery</div>
-          </div>
-        </div>
+        </NavLink>
 
         <nav className={styles.navMenu}>
           <div className={styles.navSectionLabel}>LEARNING PATH</div>

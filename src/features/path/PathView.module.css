@@ -81,6 +81,60 @@
   color: var(--text-muted);
 }
 
+.trackSwitcherBar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  flex-wrap: wrap;
+}
+
+.switcherLabel {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.trackPills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.trackPillBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.trackPillBtn:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.activePill {
+  background-color: var(--bg-card-hover);
+  border-width: 1.5px;
+}
+
+.pillDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
 /* Zig-Zag Learning Path */
 .pathSection {
   display: flex;

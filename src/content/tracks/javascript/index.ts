@@ -95,6 +95,138 @@ export const javascriptTrack: Track = {
       ],
       whyItMatters: 'Web apps parse API responses and calculate summary cards using map and filter pipelines.',
       estimatedMinutes: 7
+    },
+    {
+      id: 'js_03',
+      trackId: 'javascript',
+      order: 3,
+      stageNumber: 2,
+      title: 'Objects and Destructuring',
+      objective: 'Extract data cleanly from nested structures using modern object syntax.',
+      explanation: 'Destructuring unpacks properties from objects directly into distinct variables. This eliminates repetitive property accessors.',
+      codeSnippet: 'const facility = { id: 101, name: "Thamaga Clinic", doses: 620 };\nconst { name, doses } = facility;\nconsole.log(`${name}: ${doses} doses`);',
+      exercises: [
+        {
+          id: 'js_ex_03',
+          instruction: 'Destructure title and author from the book object and log them.',
+          initialCode: 'const book = { title: "Clean Code", author: "Robert Martin" };\nconst { title, author } = book;\nconsole.log(title, author);',
+          solutionCode: 'const book = { title: "Clean Code", author: "Robert Martin" };\nconst { title, author } = book;\nconsole.log(title, author);',
+          hints: ['Use const { title, author } = book;', 'Log both variables']
+        }
+      ],
+      quiz: [
+        {
+          id: 'js_q_07',
+          question: 'What does the spread operator (...) do when applied to an object?',
+          options: ['Deletes the object', 'Copies the enumerable properties into a new object', 'Freezes all keys', 'Converts it to an array'],
+          correctIndex: 1,
+          explanation: 'The spread operator shallow-copies key-value pairs into a new target object.'
+        },
+        {
+          id: 'js_q_08',
+          question: 'How do you assign a default value during destructuring if the key is missing?',
+          options: ['const { rate = 0 } = obj', 'const { rate: default 0 } = obj', 'const { rate || 0 } = obj', 'const { rate ?? 0 } = obj'],
+          correctIndex: 0,
+          explanation: 'Default values in destructuring patterns use the equals sign syntax (key = fallback).'
+        },
+        {
+          id: 'js_q_09',
+          question: 'Can you rename a property while destructuring it?',
+          options: ['No', 'Yes, using the colon syntax: { name: facilityName }', 'Only with strings', 'Only in TypeScript'],
+          correctIndex: 1,
+          explanation: 'The colon operator inside destructuring patterns renames the extracted variable.'
+        }
+      ],
+      whyItMatters: 'Handling JSON payloads from DHIS2 or health databases requires clean destructuring to extract relevant indicator fields.',
+      estimatedMinutes: 6
+    },
+    {
+      id: 'js_04',
+      trackId: 'javascript',
+      order: 4,
+      stageNumber: 2,
+      title: 'Promises and Async / Await',
+      objective: 'Handle asynchronous API requests and data fetching without callback hell.',
+      explanation: 'Asynchronous JavaScript coordinates network calls using Promises. The async and await keywords allow asynchronous code to read linearly like synchronous statements.',
+      codeSnippet: 'async function fetchHealthStats() {\n  const res = { status: 200, data: { coverage: 78.1 } };\n  return res.data;\n}\nfetchHealthStats().then(data => console.log("Coverage:", data.coverage));',
+      exercises: [
+        {
+          id: 'js_ex_04',
+          instruction: 'Write an async function named loadData that returns "Ready" and log the resolved promise.',
+          initialCode: 'async function loadData() {\n  return "Ready";\n}\nloadData().then(console.log);',
+          solutionCode: 'async function loadData() {\n  return "Ready";\n}\nloadData().then(console.log);',
+          hints: ['Define async function loadData()', 'Return "Ready"', 'Call loadData().then(console.log)']
+        }
+      ],
+      quiz: [
+        {
+          id: 'js_q_10',
+          question: 'What does an async function always return?',
+          options: ['A callback', 'A Promise', 'An Object', 'A Boolean'],
+          correctIndex: 1,
+          explanation: 'Async functions always wrap their return values in a Promise.'
+        },
+        {
+          id: 'js_q_11',
+          question: 'What keyword catches errors thrown inside an async/await block?',
+          options: ['catch block inside try/catch', 'onError', 'fallback', 'reject'],
+          correctIndex: 0,
+          explanation: 'Standard try/catch blocks intercept rejected Promises when using await.'
+        },
+        {
+          id: 'js_q_12',
+          question: 'What does Promise.all() do when supplied an array of promises?',
+          options: ['Runs only the fastest promise', 'Waits for all promises to resolve or rejects immediately on the first error', 'Cancels all promises', 'Runs them sequentially in series'],
+          correctIndex: 1,
+          explanation: 'Promise.all resolves when every input promise fulfills, or rejects as soon as one fails.'
+        }
+      ],
+      whyItMatters: 'Web applications fetch clinic indicators and patient registers concurrently using asynchronous promises.',
+      estimatedMinutes: 8
+    },
+    {
+      id: 'js_05',
+      trackId: 'javascript',
+      order: 5,
+      stageNumber: 3,
+      title: 'Client-Side Storage: IndexedDB and LocalStorage',
+      objective: 'Persist state locally for offline-first web reliability.',
+      explanation: 'Offline-ready applications cache data on the client device. LocalStorage stores small string key-values, while IndexedDB stores structured object stores for large datasets.',
+      codeSnippet: 'const reportKey = "draft_campaign_2026";\nconst payload = JSON.stringify({ district: "Kweneng", complete: true });\nconsole.log("Cached offline key:", reportKey);\nconsole.log("Payload:", payload);',
+      exercises: [
+        {
+          id: 'js_ex_05',
+          instruction: 'Serialize an object with JSON.stringify and print the stringified output.',
+          initialCode: 'const user = { role: "M&E Officer", facility: "Thamaga" };\nconst serialized = JSON.stringify(user);\nconsole.log(serialized);',
+          solutionCode: 'const user = { role: "M&E Officer", facility: "Thamaga" };\nconst serialized = JSON.stringify(user);\nconsole.log(serialized);',
+          hints: ['Use JSON.stringify(user)', 'Log serialized']
+        }
+      ],
+      quiz: [
+        {
+          id: 'js_q_13',
+          question: 'What is the standard synchronous storage limit for LocalStorage in modern browsers?',
+          options: ['100 MB', '5 MB', '1 GB', 'Unlimited'],
+          correctIndex: 1,
+          explanation: 'LocalStorage typically caps storage around 5 MB per origin.'
+        },
+        {
+          id: 'js_q_14',
+          question: 'Why is IndexedDB preferred over LocalStorage for offline data systems?',
+          options: ['It is asynchronous, non-blocking, and supports indexed queries over large objects', 'It deletes data on refresh', 'It is older', 'It runs in Python'],
+          correctIndex: 0,
+          explanation: 'IndexedDB operates asynchronously without blocking the UI thread and accommodates hundreds of megabytes of structured data.'
+        },
+        {
+          id: 'js_q_15',
+          question: 'What method converts a JSON string back into a JavaScript object?',
+          options: ['JSON.toObject()', 'JSON.parse()', 'JSON.decode()', 'JSON.unpack()'],
+          correctIndex: 1,
+          explanation: 'JSON.parse() parses a JSON-formatted string and reconstructs the JavaScript value or object.'
+        }
+      ],
+      whyItMatters: 'Frontline tools like the Wheelchair Data Management System and NutriAssess rely on local storage to function when health facility connectivity drops.',
+      estimatedMinutes: 8
     }
   ]
 };
