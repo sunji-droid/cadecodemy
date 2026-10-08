@@ -1,0 +1,244 @@
+.visualizerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent-ocean);
+  background-color: var(--bg-card);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.controlCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.algoSelector {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.algoBtn {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.algoBtn:hover:not(:disabled) {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.activeAlgo {
+  border-color: var(--accent-ocean);
+  color: var(--accent-ocean);
+  background-color: var(--bg-card-hover);
+}
+
+.slidersRow {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.sliderGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.sliderGroup input[type="range"] {
+  accent-color: var(--accent-ocean);
+  cursor: pointer;
+}
+
+.actionButtons {
+  margin-left: auto;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.resetBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.resetBtn:hover:not(:disabled) {
+  color: var(--text-primary);
+  background-color: var(--bg-card-hover);
+}
+
+.playBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--accent-ocean);
+  color: #fff;
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.stopBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--accent-red);
+  color: #fff;
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.canvasArea {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.metricsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.metricItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.metricItem strong {
+  color: var(--text-primary);
+}
+
+.monoTag {
+  font-family: var(--font-mono);
+  color: var(--accent-ember) !important;
+}
+
+.barsContainer {
+  height: 280px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding-top: 1rem;
+  background-color: var(--bg-code);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.bar {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transition: height 0.05s ease;
+  position: relative;
+}
+
+.barNormal {
+  background-color: rgba(56, 189, 248, 0.5);
+  border-top: 2px solid var(--accent-ocean);
+}
+
+.barComparing {
+  background-color: rgba(242, 100, 25, 0.8);
+  border-top: 2px solid var(--accent-ember);
+}
+
+.barSorted {
+  background-color: rgba(78, 135, 82, 0.8);
+  border-top: 2px solid var(--stage-2-fern);
+}
+
+.barLabel {
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  color: #fff;
+  margin-top: 4px;
+}
+
+.specCard {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--accent-ocean);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.specCard h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  color: var(--accent-ocean);
+}
+
+.specCard p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}

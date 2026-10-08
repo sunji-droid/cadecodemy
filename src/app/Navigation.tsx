@@ -14,6 +14,7 @@ import {
   GitPullRequest,
   Search,
   Binary,
+  BarChart3,
   ChevronDown,
   ChevronRight,
   Menu,
@@ -101,6 +102,10 @@ export const Navigation: React.FC = () => {
               <NavLink to="/algorithms" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <Binary className={styles.subNavIcon} size={17} />
                 <span>Algorithms Lab</span>
+              </NavLink>
+              <NavLink to="/visualizer" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <BarChart3 className={styles.subNavIcon} size={17} />
+                <span>Sorting Visualizer</span>
               </NavLink>
               <NavLink to="/capstone/python" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <GraduationCap className={styles.subNavIcon} size={17} />
