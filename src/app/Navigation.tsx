@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   Compass,
@@ -12,13 +12,19 @@ import {
   Database,
   Sliders,
   GitPullRequest,
-  ShieldAlert,
   Search,
-  Binary
+  Binary,
+  ChevronDown,
+  ChevronRight,
+  Menu,
+  GraduationCap
 } from 'lucide-react';
 import styles from './Navigation.module.css';
 
 export const Navigation: React.FC = () => {
+  // Retractable accordion state for Progression bundle
+  const [progressionOpen, setProgressionOpen] = useState(false);
+
   return (
     <>
       {/* Desktop Sidebar Navigation */}
@@ -38,6 +44,7 @@ export const Navigation: React.FC = () => {
         </NavLink>
 
         <nav className={styles.navMenu}>
+          {/* SECTION 1: CORE LEARNING */}
           <div className={styles.navSectionLabel}>LEARNING PATH</div>
           <NavLink to="/" end className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Compass className={styles.navIcon} size={20} />
@@ -52,40 +59,65 @@ export const Navigation: React.FC = () => {
             <span>Code Playground</span>
           </NavLink>
 
-          <div className={styles.navSectionLabel}>PROGRESSION</div>
-          <NavLink to="/stages" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
-            <Sparkles className={styles.navIcon} size={20} />
-            <span>Stages & Perks</span>
-          </NavLink>
-          <NavLink to="/datasets" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
-            <Database className={styles.navIcon} size={20} />
-            <span>Datasets (Stage 4)</span>
-          </NavLink>
-          <NavLink to="/review" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
-            <GitPullRequest className={styles.navIcon} size={20} />
-            <span>Peer Review (Stage 5)</span>
-          </NavLink>
-          <NavLink to="/mystery" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
-            <Search className={styles.navIcon} size={20} />
-            <span>SQL Mystery Case</span>
-          </NavLink>
-          <NavLink to="/algorithms" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
-            <Binary className={styles.navIcon} size={20} />
-            <span>Algorithms Lab</span>
-          </NavLink>
-          <NavLink to="/capstone/python" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
-            <Award className={styles.navIcon} size={20} />
-            <span>Master Capstones</span>
-          </NavLink>
-          <NavLink to="/badges" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
-            <Award className={styles.navIcon} size={20} />
-            <span>Badges</span>
-          </NavLink>
-          <NavLink to="/certificates" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
-            <FileCheck className={styles.navIcon} size={20} />
-            <span>Certificates</span>
-          </NavLink>
+          {/* SECTION 2: BUNDLED PROGRESSION & ACADEMIC LABS (BURGER / ACCORDION DROPDOWN) */}
+          <div className={styles.bundleSection}>
+            <button 
+              type="button"
+              className={`${styles.bundleToggle} ${progressionOpen ? styles.bundleOpen : ''}`}
+              onClick={() => setProgressionOpen(!progressionOpen)}
+              aria-expanded={progressionOpen}
+              aria-controls="progression-menu"
+            >
+              <div className={styles.bundleLabelLeft}>
+                <Menu className={styles.burgerIcon} size={18} />
+                <span className={styles.bundleTitle}>PROGRESSION &amp; LABS</span>
+              </div>
+              <div className={styles.bundleChevron}>
+                {progressionOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+              </div>
+            </button>
 
+            {/* Dropped down items container */}
+            <div 
+              id="progression-menu" 
+              className={`${styles.bundleContent} ${progressionOpen ? styles.showContent : ''}`}
+            >
+              <NavLink to="/stages" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Sparkles className={styles.subNavIcon} size={17} />
+                <span>Stages & Perks</span>
+              </NavLink>
+              <NavLink to="/datasets" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Database className={styles.subNavIcon} size={17} />
+                <span>Datasets (Stage 4)</span>
+              </NavLink>
+              <NavLink to="/review" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <GitPullRequest className={styles.subNavIcon} size={17} />
+                <span>Peer Review (Stage 5)</span>
+              </NavLink>
+              <NavLink to="/mystery" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Search className={styles.subNavIcon} size={17} />
+                <span>SQL Mystery Case</span>
+              </NavLink>
+              <NavLink to="/algorithms" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Binary className={styles.subNavIcon} size={17} />
+                <span>Algorithms Lab</span>
+              </NavLink>
+              <NavLink to="/capstone/python" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <GraduationCap className={styles.subNavIcon} size={17} />
+                <span>Master Capstones</span>
+              </NavLink>
+              <NavLink to="/badges" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Award className={styles.subNavIcon} size={17} />
+                <span>Badges</span>
+              </NavLink>
+              <NavLink to="/certificates" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <FileCheck className={styles.subNavIcon} size={17} />
+                <span>Certificates</span>
+              </NavLink>
+            </div>
+          </div>
+
+          {/* SECTION 3: SYSTEM */}
           <div className={styles.navSectionLabel}>SYSTEM</div>
           <NavLink to="/profile" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <User className={styles.navIcon} size={20} />

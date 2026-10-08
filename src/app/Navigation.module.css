@@ -75,11 +75,12 @@
 }
 
 .navMenu {
-  padding: 1.25rem 0.75rem;
+  padding: 1rem 0.75rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   overflow-y: auto;
+  max-height: calc(100vh - 85px);
 }
 
 .navSectionLabel {
@@ -94,7 +95,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.6rem 0.75rem;
+  padding: 0.55rem 0.75rem;
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -119,9 +120,143 @@
   flex-shrink: 0;
 }
 
-/* Mobile Bottom Bar (Hidden on Desktop) */
+/* BUNDLE / ACCORDION STYLES */
+.bundleSection {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.bundleToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.bundleToggle:hover {
+  border-color: var(--accent-ocean);
+  background-color: var(--bg-card-hover);
+}
+
+.bundleOpen {
+  border-color: var(--accent-ocean);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.bundleLabelLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.burgerIcon {
+  color: var(--accent-ocean);
+  flex-shrink: 0;
+}
+
+.bundleTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.bundleChevron {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.bundleContent {
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
+  background-color: rgba(15, 20, 26, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-top: none;
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  padding: 0.5rem 0.35rem 0.5rem 0.6rem;
+}
+
+.showContent {
+  display: flex;
+}
+
+.subNavItem {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.subNavItem:hover {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.subNavItem.active {
+  background-color: var(--bg-card);
+  color: var(--accent-ocean);
+  font-weight: 600;
+  border-left: 2px solid var(--accent-ocean);
+}
+
+.subNavIcon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.subNavItem.active .subNavIcon {
+  color: var(--accent-ocean);
+}
+
+/* Mobile Bottom Navigation Bar */
 .mobileBottomNav {
   display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  height: 60px;
+  z-index: 50;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mobileNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  text-decoration: none;
+  gap: 2px;
+}
+
+.mobileNavItem.mobileActive {
+  color: var(--accent-ember);
 }
 
 @media (max-width: 768px) {
@@ -131,34 +266,5 @@
 
   .mobileBottomNav {
     display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 64px;
-    background-color: var(--bg-secondary);
-    border-top: 1px solid var(--border-subtle);
-    z-index: 50;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 0.5rem;
-  }
-
-  .mobileNavItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 48px;
-    min-height: 48px; /* WCAG 44px minimum tap target rule */
-    color: var(--text-muted);
-    font-size: 0.65rem;
-    font-weight: 600;
-    gap: 2px;
-    text-decoration: none;
-  }
-
-  .mobileNavItem.mobileActive {
-    color: var(--accent-ember);
   }
 }
