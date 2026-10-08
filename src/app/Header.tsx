@@ -66,10 +66,38 @@ export const Header: React.FC = () => {
                 <span>Multi-Language Playground</span>
               </Link>
 
-              <div className={styles.dropdownSectionLabel}>PROGRESSION &amp; REWARDS</div>
+              <div className={styles.dropdownSectionLabel}>PROGRESSION &amp; LABS</div>
               <Link to="/stages" className={styles.dropdownItem}>
                 <Sparkles size={16} />
                 <span>Six Stages &amp; Perks</span>
+              </Link>
+              <Link to="/visualizer" className={styles.dropdownItem}>
+                <Sparkles size={16} />
+                <span>Sorting Visualizer</span>
+              </Link>
+              <Link to="/graphs" className={styles.dropdownItem}>
+                <Sparkles size={16} />
+                <span>Graph Networks (Dijkstra)</span>
+              </Link>
+              <Link to="/algorithms" className={styles.dropdownItem}>
+                <Sparkles size={16} />
+                <span>Algorithms &amp; Data Structures</span>
+              </Link>
+              <Link to="/mystery" className={styles.dropdownItem}>
+                <Sparkles size={16} />
+                <span>SQL Mystery Forensics</span>
+              </Link>
+              <Link to="/career" className={styles.dropdownItem}>
+                <Sparkles size={16} />
+                <span>Career &amp; Technical Interviews</span>
+              </Link>
+              <Link to="/reference" className={styles.dropdownItem}>
+                <Sparkles size={16} />
+                <span>Reference Desk &amp; Cheatsheets</span>
+              </Link>
+              <Link to="/institutional" className={styles.dropdownItem}>
+                <Sparkles size={16} />
+                <span>BQA Accreditation &amp; Grants</span>
               </Link>
               <Link to="/badges" className={styles.dropdownItem}>
                 <Award size={16} />
@@ -77,7 +105,7 @@ export const Header: React.FC = () => {
               </Link>
               <Link to="/certificates" className={styles.dropdownItem}>
                 <ShieldCheck size={16} />
-                <span>Download Certificates</span>
+                <span>Official PDF Diplomas</span>
               </Link>
 
               <div className={styles.dropdownSectionLabel}>ACCOUNT &amp; CONTROLS</div>
