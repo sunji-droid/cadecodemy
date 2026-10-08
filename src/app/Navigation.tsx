@@ -15,6 +15,7 @@ import {
   Search,
   Binary,
   BarChart3,
+  Briefcase,
   ChevronDown,
   ChevronRight,
   Menu,
@@ -106,6 +107,10 @@ export const Navigation: React.FC = () => {
               <NavLink to="/visualizer" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <BarChart3 className={styles.subNavIcon} size={17} />
                 <span>Sorting Visualizer</span>
+              </NavLink>
+              <NavLink to="/career" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Briefcase className={styles.subNavIcon} size={17} />
+                <span>Career &amp; Interview Hub</span>
               </NavLink>
               <NavLink to="/capstone/python" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <GraduationCap className={styles.subNavIcon} size={17} />

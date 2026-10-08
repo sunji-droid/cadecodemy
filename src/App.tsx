@@ -18,6 +18,7 @@ import { CodeReviewView } from './features/review/CodeReviewView';
 import { MysteryView } from './features/mystery/MysteryView';
 import { AlgorithmsView } from './features/algorithms/AlgorithmsView';
 import { SortingVisualizerView } from './features/visualizer/SortingVisualizerView';
+import { CareerHubView } from './features/career/CareerHubView';
 
 export const App: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ export const App: React.FC = () => {
         <Route path="mystery" element={<MysteryView />} />
         <Route path="algorithms" element={<AlgorithmsView />} />
         <Route path="visualizer" element={<SortingVisualizerView />} />
+        <Route path="career" element={<CareerHubView />} />
         <Route path="capstone/:trackId" element={<CapstoneRunner />} />
         <Route path="badges" element={<BadgesView />} />
         <Route path="certificates" element={<CertificatesView />} />
