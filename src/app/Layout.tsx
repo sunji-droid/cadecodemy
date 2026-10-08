@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { Header } from './Header';
-import { SocraticAssistantWidget } from '../features/assistant/SocraticAssistantWidget';
 import styles from './Layout.module.css';
 
 export const Layout: React.FC = () => {
@@ -16,8 +15,6 @@ export const Layout: React.FC = () => {
           <Outlet />
         </main>
         <Footer />
-        {/* Floating In-Browser Socratic AI Assistant */}
-        <SocraticAssistantWidget />
       </div>
     </div>
   );
