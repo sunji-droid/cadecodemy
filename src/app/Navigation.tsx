@@ -16,6 +16,7 @@ import {
   Binary,
   BarChart3,
   Briefcase,
+  Network,
   ChevronDown,
   ChevronRight,
   Menu,
@@ -107,6 +108,10 @@ export const Navigation: React.FC = () => {
               <NavLink to="/visualizer" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <BarChart3 className={styles.subNavIcon} size={17} />
                 <span>Sorting Visualizer</span>
+              </NavLink>
+              <NavLink to="/graphs" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Network className={styles.subNavIcon} size={17} />
+                <span>Graph Networks (Dijkstra)</span>
               </NavLink>
               <NavLink to="/career" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <Briefcase className={styles.subNavIcon} size={17} />

@@ -1,0 +1,286 @@
+.graphContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--stage-3-sky);
+  background-color: var(--bg-card);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.controlCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.algoSelector {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.algoBtn {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.algoBtn:hover:not(:disabled) {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.activeAlgo {
+  border-color: var(--stage-3-sky);
+  color: var(--stage-3-sky);
+  background-color: var(--bg-card-hover);
+}
+
+.actionRow {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.resetBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.resetBtn:hover:not(:disabled) {
+  color: var(--text-primary);
+  background-color: var(--bg-card-hover);
+}
+
+.playBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--stage-3-sky);
+  color: #fff;
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.playBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.visualGrid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+}
+
+@media (max-width: 960px) {
+  .visualGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.canvasWrapper {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+}
+
+.svgCanvas {
+  width: 100%;
+  height: 100%;
+  max-width: 620px;
+}
+
+.edgeLine {
+  stroke-width: 3;
+  transition: all 0.3s ease;
+}
+
+.edgeNormal {
+  stroke: var(--border-subtle);
+}
+
+.edgeActive {
+  stroke: var(--accent-ember);
+  stroke-width: 5;
+}
+
+.edgeShortest {
+  stroke: var(--stage-2-fern);
+  stroke-width: 6;
+}
+
+.weightBg {
+  fill: var(--bg-secondary);
+  stroke: var(--border-subtle);
+}
+
+.weightText {
+  fill: var(--text-muted);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.nodeCircle {
+  fill: var(--bg-secondary);
+  stroke: var(--border-subtle);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.nodeVisited {
+  fill: rgba(56, 189, 248, 0.25);
+  stroke: var(--stage-3-sky);
+  stroke-width: 3;
+}
+
+.nodeCode {
+  fill: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.nodeLabel {
+  fill: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.distLabel {
+  fill: var(--stage-2-fern);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.tracePanel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 420px;
+}
+
+.traceHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--stage-3-sky);
+}
+
+.traceLogList {
+  background-color: var(--bg-code);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  flex: 1;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.emptyTrace {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.traceItem {
+  display: flex;
+  gap: 0.4rem;
+  color: var(--stage-2-fern);
+  line-height: 1.4;
+}
+
+.tracePrompt {
+  color: var(--text-muted);
+}
+
+.theoryCard {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--stage-3-sky);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.theoryCard h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--stage-3-sky);
+}
+
+.theoryCard p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.theoryCard code {
+  font-family: var(--font-mono);
+  color: var(--stage-3-sky);
+}
