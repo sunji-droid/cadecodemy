@@ -21,6 +21,7 @@ import { SortingVisualizerView } from './features/visualizer/SortingVisualizerVi
 import { CareerHubView } from './features/career/CareerHubView';
 import { GraphVisualizerView } from './features/graphs/GraphVisualizerView';
 import { ReferenceHubView } from './features/reference/ReferenceHubView';
+import { BitwiseLabView } from './features/bitwise/BitwiseLabView';
 
 export const App: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ export const App: React.FC = () => {
         <Route path="algorithms" element={<AlgorithmsView />} />
         <Route path="visualizer" element={<SortingVisualizerView />} />
         <Route path="graphs" element={<GraphVisualizerView />} />
+        <Route path="bitwise" element={<BitwiseLabView />} />
         <Route path="career" element={<CareerHubView />} />
         <Route path="reference" element={<ReferenceHubView />} />
         <Route path="capstone/:trackId" element={<CapstoneRunner />} />

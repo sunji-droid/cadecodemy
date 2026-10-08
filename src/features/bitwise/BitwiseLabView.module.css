@@ -1,0 +1,227 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--stage-2-fern);
+  background-color: var(--bg-card);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.operatorRibbon {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.opBtn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.opBtn:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.activeOp {
+  border-color: var(--stage-2-fern);
+  color: var(--stage-2-fern);
+  background-color: var(--bg-card-hover);
+}
+
+.mainCanvas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.operandCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.formats {
+  display: flex;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.formats strong {
+  color: var(--accent-ocean);
+}
+
+.bitRow {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.5rem;
+}
+
+.bitBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.25rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.bitBox:hover {
+  border-color: var(--accent-ocean);
+  transform: translateY(-2px);
+}
+
+.bitVal {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.bitPos {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.bitOn {
+  background-color: rgba(56, 189, 248, 0.2);
+  border-color: var(--accent-ocean);
+  color: var(--accent-ocean);
+}
+
+.bitOff {
+  color: var(--text-muted);
+}
+
+.opDivider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}
+
+.opSymbolBadge {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 800;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--stage-2-fern);
+}
+
+.opNameText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.resultCard {
+  border-color: var(--stage-2-fern);
+  background-color: rgba(78, 135, 82, 0.05);
+}
+
+.cardTitleResult {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--stage-2-fern);
+}
+
+.resultBitBox {
+  cursor: default;
+}
+
+.resultBitBox:hover {
+  transform: none;
+}
+
+.bitResultOn {
+  background-color: rgba(78, 135, 82, 0.3);
+  border-color: var(--stage-2-fern);
+  color: var(--stage-2-fern);
+}
+
+.theoryBox {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--stage-2-fern);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.theoryBox h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  color: var(--stage-2-fern);
+}
+
+.theoryBox p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.subTheory {
+  font-size: 0.8rem !important;
+  color: var(--text-muted) !important;
+}

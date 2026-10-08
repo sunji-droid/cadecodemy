@@ -18,6 +18,7 @@ import {
   Briefcase,
   Network,
   BookMarked,
+  Cpu,
   ChevronDown,
   ChevronRight,
   Menu,
@@ -113,6 +114,10 @@ export const Navigation: React.FC = () => {
               <NavLink to="/graphs" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <Network className={styles.subNavIcon} size={17} />
                 <span>Graph Networks (Dijkstra)</span>
+              </NavLink>
+              <NavLink to="/bitwise" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Cpu className={styles.subNavIcon} size={17} />
+                <span>Bitwise &amp; Binary Lab</span>
               </NavLink>
               <NavLink to="/career" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <Briefcase className={styles.subNavIcon} size={17} />
