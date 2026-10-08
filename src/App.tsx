@@ -22,6 +22,7 @@ import { CareerHubView } from './features/career/CareerHubView';
 import { GraphVisualizerView } from './features/graphs/GraphVisualizerView';
 import { ReferenceHubView } from './features/reference/ReferenceHubView';
 import { BitwiseLabView } from './features/bitwise/BitwiseLabView';
+import { AccreditationGuideView } from './features/institutional/AccreditationGuideView';
 
 export const App: React.FC = () => {
   return (
@@ -41,6 +42,7 @@ export const App: React.FC = () => {
         <Route path="bitwise" element={<BitwiseLabView />} />
         <Route path="career" element={<CareerHubView />} />
         <Route path="reference" element={<ReferenceHubView />} />
+        <Route path="institutional" element={<AccreditationGuideView />} />
         <Route path="capstone/:trackId" element={<CapstoneRunner />} />
         <Route path="badges" element={<BadgesView />} />
         <Route path="certificates" element={<CertificatesView />} />

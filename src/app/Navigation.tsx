@@ -19,6 +19,7 @@ import {
   Network,
   BookMarked,
   Cpu,
+  Landmark,
   ChevronDown,
   ChevronRight,
   Menu,
@@ -126,6 +127,10 @@ export const Navigation: React.FC = () => {
               <NavLink to="/reference" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <BookMarked className={styles.subNavIcon} size={17} />
                 <span>Reference Desk &amp; Cheatsheets</span>
+              </NavLink>
+              <NavLink to="/institutional" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
+                <Landmark className={styles.subNavIcon} size={17} />
+                <span>BQA &amp; Grants Blueprint</span>
               </NavLink>
               <NavLink to="/capstone/python" className={({ isActive }) => `${styles.subNavItem} ${isActive ? styles.active : ''}`}>
                 <GraduationCap className={styles.subNavIcon} size={17} />
