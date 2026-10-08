@@ -17,7 +17,7 @@ export const About: React.FC = () => {
       <section className={styles.creatorCard}>
         <div className={styles.portraitWrapper}>
           <img
-            src="/kabo-onamile.jpg"
+            src="./kabo-onamile.jpg"
             alt="Kabo Merapelo Onamile wearing a blue bucket hat and sunglasses"
             className={styles.portraitImg}
           />
