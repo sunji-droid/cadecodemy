@@ -3,7 +3,18 @@ import { useParams, Link } from 'react-router-dom';
 import { ALL_TRACKS } from '../../content';
 import { useStore } from '../../lib/store';
 import { PythonEngine, SQLEngine, JavaScriptEngine, BashEngine, REngine } from '../../engines';
-import { Play, CheckCircle2, AlertCircle, ArrowRight, ArrowLeft } from 'lucide-react';
+import { 
+  Play, 
+  CheckCircle2, 
+  ArrowRight, 
+  ArrowLeft, 
+  ChevronLeft, 
+  ChevronRight, 
+  BookOpen, 
+  Code2, 
+  HelpCircle,
+  Sparkles
+} from 'lucide-react';
 import styles from './LessonRunner.module.css';
 
 const pyEngine = new PythonEngine();
@@ -22,7 +33,7 @@ export const LessonRunner: React.FC = () => {
     recordQuizPass
   } = useStore();
 
-  // Find target lesson
+  // Find target lesson and track
   let currentLesson = ALL_TRACKS[0].lessons[0];
   let currentTrack = ALL_TRACKS[0];
 
@@ -35,10 +46,13 @@ export const LessonRunner: React.FC = () => {
     }
   }
 
+  // Slide state: 1 = Concept & Code, 2 = Practice Exercise, 3 = Quiz Check
+  const [currentSlide, setCurrentSlide] = useState<1 | 2 | 3>(1);
+
+  // Demo Code State
   const [code, setCode] = useState(currentLesson.codeSnippet);
   const [output, setOutput] = useState<string>('');
   const [isRunning, setIsRunning] = useState(false);
-  const [activeTab, setActiveTab] = useState<'explanation' | 'exercise' | 'quiz'>('explanation');
 
   // Exercise State
   const currentExercise = currentLesson.exercises[0];
@@ -78,7 +92,6 @@ export const LessonRunner: React.FC = () => {
     const out = result.stdout || result.stderr || '';
     setExerciseOutput(out);
 
-    // Basic pass validation
     if (!result.error && out.trim().length > 0) {
       setExercisePassed(true);
       const isFirstTry = attemptCount === 0;
@@ -104,18 +117,18 @@ export const LessonRunner: React.FC = () => {
     }
   };
 
-  // Find next lesson
+  // Find next/prev lessons in track
   const currentIdx = currentTrack.lessons.findIndex(l => l.id === currentLesson.id);
   const nextLesson = currentTrack.lessons[currentIdx + 1];
   const prevLesson = currentTrack.lessons[currentIdx - 1];
 
   return (
     <div className={styles.lessonContainer}>
-      {/* Top Nav & Breadcrumb */}
+      {/* Top Breadcrumb Navigation */}
       <div className={styles.topBar}>
-        <Link to="/tracks" className={styles.backLink}>
+        <Link to="/" className={styles.backLink}>
           <ArrowLeft size={16} />
-          <span>{currentTrack.title}</span>
+          <span>{currentTrack.badge} Learning Path</span>
         </Link>
         <div className={styles.lessonPaging}>
           Lesson {currentLesson.order} of {currentTrack.lessons.length}
@@ -129,7 +142,7 @@ export const LessonRunner: React.FC = () => {
           {completedLessons[currentLesson.id] && (
             <span className={styles.completedTag}>
               <CheckCircle2 size={13} />
-              <span>Completed</span>
+              <span>Lesson Completed</span>
             </span>
           )}
         </div>
@@ -137,180 +150,234 @@ export const LessonRunner: React.FC = () => {
         <p className={styles.objectiveText}><strong>Objective:</strong> {currentLesson.objective}</p>
       </header>
 
-      {/* Tabs navigation */}
-      <div className={styles.tabsRow}>
-        <button
-          className={`${styles.tabBtn} ${activeTab === 'explanation' ? styles.activeTab : ''}`}
-          onClick={() => setActiveTab('explanation')}
-        >
-          1. Concept &amp; Code
-        </button>
-        <button
-          className={`${styles.tabBtn} ${activeTab === 'exercise' ? styles.activeTab : ''}`}
-          onClick={() => setActiveTab('exercise')}
-        >
-          2. Practice Exercise
-        </button>
-        <button
-          className={`${styles.tabBtn} ${activeTab === 'quiz' ? styles.activeTab : ''}`}
-          onClick={() => setActiveTab('quiz')}
-        >
-          3. Check Understanding
-        </button>
+      {/* Multi-Slide Indicator Header & Carousel Stepper */}
+      <div className={styles.carouselHeaderBar}>
+        <div className={styles.slideCounter}>
+          <span>SLIDE {currentSlide} OF 3</span>
+          <span className={styles.slideName}>
+            {currentSlide === 1 && '— Concept & Interactive Cell'}
+            {currentSlide === 2 && '— Hands-On Exercise'}
+            {currentSlide === 3 && '— Knowledge Check Quiz'}
+          </span>
+        </div>
+
+        {/* Slide Progress Dots / Buttons */}
+        <div className={styles.stepperDots}>
+          <button
+            className={`${styles.stepPill} ${currentSlide === 1 ? styles.stepActive : ''}`}
+            onClick={() => setCurrentSlide(1)}
+          >
+            <BookOpen size={14} />
+            <span>1. Concept</span>
+          </button>
+          <button
+            className={`${styles.stepPill} ${currentSlide === 2 ? styles.stepActive : ''}`}
+            onClick={() => setCurrentSlide(2)}
+          >
+            <Code2 size={14} />
+            <span>2. Exercise</span>
+          </button>
+          <button
+            className={`${styles.stepPill} ${currentSlide === 3 ? styles.stepActive : ''}`}
+            onClick={() => setCurrentSlide(3)}
+          >
+            <HelpCircle size={14} />
+            <span>3. Quiz</span>
+          </button>
+        </div>
       </div>
 
-      {/* Tab 1: Explanation & Interactive Snippet */}
-      {activeTab === 'explanation' && (
-        <section className={styles.tabContent}>
-          <div className={styles.explanationText}>
-            <p>{currentLesson.explanation}</p>
-          </div>
-
-          <div className={styles.editorCard}>
-            <div className={styles.editorHeader}>
-              <span className={styles.editorLang}>{currentTrack.badge} Code Cell</span>
-              <button
-                className={styles.runBtn}
-                onClick={handleRunDemo}
-                disabled={isRunning}
-              >
-                <Play size={14} />
-                <span>{isRunning ? 'Running...' : 'Run Code'}</span>
-              </button>
+      {/* Slide Carousel Stage Area */}
+      <div className={styles.slideViewport}>
+        {/* SLIDE 1: Concept & Code Cell */}
+        {currentSlide === 1 && (
+          <div className={styles.slideCard}>
+            <div className={styles.slideBadge}>SLIDE 1 · CONCEPT &amp; RUNNER</div>
+            <div className={styles.explanationText}>
+              <p>{currentLesson.explanation}</p>
             </div>
-            <textarea
-              className={styles.codeTextarea}
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              rows={5}
-              spellCheck={false}
-            />
-            {output && (
-              <div className={styles.outputBox}>
-                <div className={styles.outputTitle}>Output:</div>
-                <pre className={styles.outputPre}>{output}</pre>
+
+            <div className={styles.editorCard}>
+              <div className={styles.editorHeader}>
+                <span className={styles.editorLang}>{currentTrack.badge} Code Cell</span>
+                <button
+                  className={styles.runBtn}
+                  onClick={handleRunDemo}
+                  disabled={isRunning}
+                >
+                  <Play size={14} />
+                  <span>{isRunning ? 'Running...' : 'Run Code'}</span>
+                </button>
               </div>
-            )}
-          </div>
-
-          <div className={styles.whyBox}>
-            <strong>Why this matters in practice:</strong> {currentLesson.whyItMatters}
-          </div>
-        </section>
-      )}
-
-      {/* Tab 2: Interactive Exercise */}
-      {activeTab === 'exercise' && currentExercise && (
-        <section className={styles.tabContent}>
-          <div className={styles.exerciseInstruction}>
-            <h3>Instructions</h3>
-            <p>{currentExercise.instruction}</p>
-          </div>
-
-          <div className={styles.editorCard}>
-            <div className={styles.editorHeader}>
-              <span className={styles.editorLang}>Your Solution</span>
-              <button
-                className={styles.runBtn}
-                onClick={handleRunExercise}
-                disabled={isRunning}
-              >
-                <Play size={14} />
-                <span>{isRunning ? 'Checking...' : 'Run & Check'}</span>
-              </button>
-            </div>
-            <textarea
-              className={styles.codeTextarea}
-              value={exerciseCode}
-              onChange={(e) => setExerciseCode(e.target.value)}
-              rows={6}
-              spellCheck={false}
-            />
-            {exerciseOutput && (
-              <div className={styles.outputBox}>
-                <div className={styles.outputTitle}>Execution Output:</div>
-                <pre className={styles.outputPre}>{exerciseOutput}</pre>
-              </div>
-            )}
-          </div>
-
-          {exercisePassed && (
-            <div className={styles.successBanner}>
-              <CheckCircle2 size={18} />
-              <span>Exercise Passed! 15 XP awarded.</span>
-            </div>
-          )}
-        </section>
-      )}
-
-      {/* Tab 3: Understanding Quiz */}
-      {activeTab === 'quiz' && (
-        <section className={styles.tabContent}>
-          <div className={styles.quizList}>
-            {currentLesson.quiz.map((q, qIdx) => (
-              <div key={q.id} className={styles.quizCard}>
-                <h4 className={styles.quizQuestion}>
-                  {qIdx + 1}. {q.question}
-                </h4>
-                <div className={styles.optionsList}>
-                  {q.options.map((opt, optIdx) => {
-                    const isSelected = selectedAnswers[qIdx] === optIdx;
-                    let optStyle = styles.optionItem;
-                    if (quizSubmitted) {
-                      if (optIdx === q.correctIndex) optStyle += ` ${styles.optionCorrect}`;
-                      else if (isSelected) optStyle += ` ${styles.optionWrong}`;
-                    } else if (isSelected) {
-                      optStyle += ` ${styles.optionSelected}`;
-                    }
-
-                    return (
-                      <button
-                        key={optIdx}
-                        className={optStyle}
-                        onClick={() => handleSelectQuiz(qIdx, optIdx)}
-                      >
-                        <span className={styles.optLetter}>{String.fromCharCode(65 + optIdx)}</span>
-                        <span>{opt}</span>
-                      </button>
-                    );
-                  })}
+              <textarea
+                className={styles.codeTextarea}
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                rows={5}
+                spellCheck={false}
+              />
+              {output && (
+                <div className={styles.outputBox}>
+                  <div className={styles.outputTitle}>Execution Output:</div>
+                  <pre className={styles.outputPre}>{output}</pre>
                 </div>
-                {quizSubmitted && (
-                  <div className={styles.quizExplanation}>
-                    {q.explanation}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {!quizSubmitted ? (
-            <button
-              className={styles.submitQuizBtn}
-              onClick={handleSubmitQuiz}
-              disabled={Object.keys(selectedAnswers).length < currentLesson.quiz.length}
-            >
-              Submit Quiz Answers
-            </button>
-          ) : (
-            <div className={styles.quizDoneBanner}>
-              Quiz completed! Your score has been recorded.
+              )}
             </div>
-          )}
-        </section>
-      )}
 
-      {/* Navigation to Prev/Next Lesson */}
+            <div className={styles.whyBox}>
+              <strong>Why this matters in practice:</strong> {currentLesson.whyItMatters}
+            </div>
+
+            <div className={styles.slideActionRow}>
+              <div />
+              <button className={styles.nextSlideBtn} onClick={() => setCurrentSlide(2)}>
+                <span>Continue to Exercise (Slide 2)</span>
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* SLIDE 2: Interactive Practice Exercise */}
+        {currentSlide === 2 && currentExercise && (
+          <div className={styles.slideCard}>
+            <div className={styles.slideBadge}>SLIDE 2 · PRACTICE EXERCISE</div>
+            <div className={styles.exerciseInstruction}>
+              <h3>Exercise Challenge</h3>
+              <p>{currentExercise.instruction}</p>
+            </div>
+
+            <div className={styles.editorCard}>
+              <div className={styles.editorHeader}>
+                <span className={styles.editorLang}>Your Solution Workspace</span>
+                <button
+                  className={styles.runBtn}
+                  onClick={handleRunExercise}
+                  disabled={isRunning}
+                >
+                  <Play size={14} />
+                  <span>{isRunning ? 'Checking...' : 'Run & Check'}</span>
+                </button>
+              </div>
+              <textarea
+                className={styles.codeTextarea}
+                value={exerciseCode}
+                onChange={(e) => setExerciseCode(e.target.value)}
+                rows={6}
+                spellCheck={false}
+              />
+              {exerciseOutput && (
+                <div className={styles.outputBox}>
+                  <div className={styles.outputTitle}>Test Output:</div>
+                  <pre className={styles.outputPre}>{exerciseOutput}</pre>
+                </div>
+              )}
+            </div>
+
+            {exercisePassed && (
+              <div className={styles.successBanner}>
+                <CheckCircle2 size={18} />
+                <span>Exercise Passed! 15 XP awarded.</span>
+              </div>
+            )}
+
+            <div className={styles.slideActionRow}>
+              <button className={styles.prevSlideBtn} onClick={() => setCurrentSlide(1)}>
+                <ChevronLeft size={18} />
+                <span>Back to Concept (Slide 1)</span>
+              </button>
+              <button className={styles.nextSlideBtn} onClick={() => setCurrentSlide(3)}>
+                <span>Go to Quiz (Slide 3)</span>
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* SLIDE 3: Check Understanding Quiz */}
+        {currentSlide === 3 && (
+          <div className={styles.slideCard}>
+            <div className={styles.slideBadge}>SLIDE 3 · KNOWLEDGE CHECK</div>
+            <div className={styles.quizList}>
+              {currentLesson.quiz.map((q, qIdx) => (
+                <div key={q.id} className={styles.quizCard}>
+                  <h4 className={styles.quizQuestion}>
+                    {qIdx + 1}. {q.question}
+                  </h4>
+                  <div className={styles.optionsList}>
+                    {q.options.map((opt, optIdx) => {
+                      const isSelected = selectedAnswers[qIdx] === optIdx;
+                      let optStyle = styles.optionItem;
+                      if (quizSubmitted) {
+                        if (optIdx === q.correctIndex) optStyle += ` ${styles.optionCorrect}`;
+                        else if (isSelected) optStyle += ` ${styles.optionWrong}`;
+                      } else if (isSelected) {
+                        optStyle += ` ${styles.optionSelected}`;
+                      }
+
+                      return (
+                        <button
+                          key={optIdx}
+                          className={optStyle}
+                          onClick={() => handleSelectQuiz(qIdx, optIdx)}
+                        >
+                          <span className={styles.optLetter}>{String.fromCharCode(65 + optIdx)}</span>
+                          <span>{opt}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {quizSubmitted && (
+                    <div className={styles.quizExplanation}>
+                      {q.explanation}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {!quizSubmitted ? (
+              <button
+                className={styles.submitQuizBtn}
+                onClick={handleSubmitQuiz}
+                disabled={Object.keys(selectedAnswers).length < currentLesson.quiz.length}
+              >
+                Submit Quiz Answers
+              </button>
+            ) : (
+              <div className={styles.quizDoneBanner}>
+                <Sparkles size={16} />
+                <span>Quiz evaluated! Total lesson score recorded.</span>
+              </div>
+            )}
+
+            <div className={styles.slideActionRow}>
+              <button className={styles.prevSlideBtn} onClick={() => setCurrentSlide(2)}>
+                <ChevronLeft size={18} />
+                <span>Back to Exercise (Slide 2)</span>
+              </button>
+              {nextLesson && (
+                <Link to={`/lesson/${nextLesson.id}`} className={styles.nextSlideBtn} onClick={() => setCurrentSlide(1)}>
+                  <span>Advance to Lesson {nextLesson.order}</span>
+                  <ArrowRight size={18} />
+                </Link>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Lesson Footer Progression Links */}
       <footer className={styles.lessonFooterNav}>
         {prevLesson ? (
-          <Link to={`/lesson/${prevLesson.id}`} className={styles.prevBtn}>
+          <Link to={`/lesson/${prevLesson.id}`} className={styles.prevBtn} onClick={() => setCurrentSlide(1)}>
             <ArrowLeft size={16} />
             <span>Previous: {prevLesson.title}</span>
           </Link>
         ) : <div />}
 
         {nextLesson && (
-          <Link to={`/lesson/${nextLesson.id}`} className={styles.nextBtn}>
+          <Link to={`/lesson/${nextLesson.id}`} className={styles.nextBtn} onClick={() => setCurrentSlide(1)}>
             <span>Next: {nextLesson.title}</span>
             <ArrowRight size={16} />
           </Link>
