@@ -251,6 +251,130 @@
   margin-top: 0.5rem;
 }
 
+.academicActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.academicBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.academicBtn:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--accent-ocean);
+}
+
+.styleAuditPanel {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--accent-ocean);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.styleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gradeBadge {
+  font-size: 0.85rem;
+  color: var(--accent-ocean);
+}
+
+.metricsSpan {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.recsList {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.perfectStyle {
+  font-size: 0.85rem;
+  color: var(--stage-2-fern);
+  margin: 0;
+}
+
+.diagnosticPanel {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--stage-5-dusk);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.diagHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--stage-5-dusk);
+}
+
+.diagIcon {
+  color: var(--stage-5-dusk);
+}
+
+.diagHint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.diagQuestionBox {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--stage-5-dusk);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.conceptsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.conceptPill {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
 .nextSlideBtn {
   display: inline-flex;
   align-items: center;

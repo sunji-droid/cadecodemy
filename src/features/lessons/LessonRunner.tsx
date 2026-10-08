@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { ALL_TRACKS } from '../../content';
 import { useStore } from '../../lib/store';
 import { PythonEngine, SQLEngine, JavaScriptEngine, BashEngine, REngine } from '../../engines';
+import { auditStyle50, Style50Result } from '../../lib/styleAuditor';
+import { consultSocraticTutor, DiagnosticQuery } from '../../lib/socraticTutor';
 import { 
   Play, 
   CheckCircle2, 
@@ -13,7 +15,9 @@ import {
   BookOpen, 
   Code2, 
   HelpCircle,
-  Sparkles
+  Sparkles,
+  ShieldCheck,
+  Compass
 } from 'lucide-react';
 import styles from './LessonRunner.module.css';
 
@@ -64,6 +68,20 @@ export const LessonRunner: React.FC = () => {
   // Quiz State
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
+
+  // Style & Socratic Diagnostic State
+  const [styleAudit, setStyleAudit] = useState<Style50Result | null>(null);
+  const [diagnostic, setDiagnostic] = useState<DiagnosticQuery | null>(null);
+
+  const handleAuditStyle = () => {
+    const res = auditStyle50(exerciseCode, currentTrack.id);
+    setStyleAudit(res);
+  };
+
+  const handleConsultTutor = () => {
+    const diag = consultSocraticTutor(exerciseCode, exerciseOutput, currentTrack.id);
+    setDiagnostic(diag);
+  };
 
   // Engine selection based on track
   const executeCode = async (sourceCode: string) => {
@@ -250,14 +268,32 @@ export const LessonRunner: React.FC = () => {
             <div className={styles.editorCard}>
               <div className={styles.editorHeader}>
                 <span className={styles.editorLang}>Your Solution Workspace</span>
-                <button
-                  className={styles.runBtn}
-                  onClick={handleRunExercise}
-                  disabled={isRunning}
-                >
-                  <Play size={14} />
-                  <span>{isRunning ? 'Checking...' : 'Run & Check'}</span>
-                </button>
+                <div className={styles.academicActions}>
+                  <button
+                    className={styles.academicBtn}
+                    onClick={handleAuditStyle}
+                    title="Audit Code Style & PEP Standards"
+                  >
+                    <ShieldCheck size={13} />
+                    <span>Style Audit</span>
+                  </button>
+                  <button
+                    className={styles.academicBtn}
+                    onClick={handleConsultTutor}
+                    title="Consult Socratic Diagnostic Assistant"
+                  >
+                    <Compass size={13} />
+                    <span>Socratic Diagnostic</span>
+                  </button>
+                  <button
+                    className={styles.runBtn}
+                    onClick={handleRunExercise}
+                    disabled={isRunning}
+                  >
+                    <Play size={14} />
+                    <span>{isRunning ? 'Checking...' : 'Run & Check'}</span>
+                  </button>
+                </div>
               </div>
               <textarea
                 className={styles.codeTextarea}
@@ -273,6 +309,48 @@ export const LessonRunner: React.FC = () => {
                 </div>
               )}
             </div>
+
+            {/* Academic Style 50 Panel */}
+            {styleAudit && (
+              <div className={styles.styleAuditPanel}>
+                <div className={styles.styleHeader}>
+                  <div className={styles.gradeBadge}>
+                    Style Grade: <strong>{styleAudit.grade}</strong> ({(styleAudit.score * 100).toFixed(0)}%)
+                  </div>
+                  <span className={styles.metricsSpan}>
+                    Lines: {styleAudit.metrics.lineCount} | Comments: {styleAudit.metrics.commentDensity}%
+                  </span>
+                </div>
+                {styleAudit.recommendations.length > 0 ? (
+                  <ul className={styles.recsList}>
+                    {styleAudit.recommendations.map((r, i) => (
+                      <li key={i}>{r}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className={styles.perfectStyle}>Exemplary code style. Meets institutional readability benchmarks.</p>
+                )}
+              </div>
+            )}
+
+            {/* Socratic Diagnostic Panel */}
+            {diagnostic && (
+              <div className={styles.diagnosticPanel}>
+                <div className={styles.diagHeader}>
+                  <Compass size={16} className={styles.diagIcon} />
+                  <strong>Socratic Diagnostic Guidance</strong>
+                </div>
+                <p className={styles.diagHint}>{diagnostic.hint}</p>
+                <div className={styles.diagQuestionBox}>
+                  <strong>Probing Inquiry:</strong> {diagnostic.probingQuestion}
+                </div>
+                <div className={styles.conceptsRow}>
+                  {diagnostic.relevantConcepts.map((c, i) => (
+                    <span key={i} className={styles.conceptPill}>{c}</span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {exercisePassed && (
               <div className={styles.successBanner}>
