@@ -322,3 +322,68 @@ LinkedIn: https://linkedin.com/in/kabo-onamile
 **Attachments:**
 1. `Kabo_Merapelo_Onamile_CV_Europass.pdf`
 2. `Sample_CadeCodemy_Master_Diploma.pdf`
+
+
+---
+
+## EMAIL 11: BA ISAGO University — Faculty of the Built Environment, Arts and Science (Computing & IT)
+**To:** `gaborone.campus@baisago.ac.bw`, `admissions@baisago.ac.bw`  
+**Subject:** Academic Partnership & Practical Computing Lab Showcase: CadeCodemy Platform (Founder: Kabo Onamile)  
+
+Dear Dean & Faculty of the Built Environment, Arts and Science / Department of Computing,
+
+My name is **Kabo Merapelo Onamile**, an IDM Public Health graduate, systems architect, and software engineer based in Molepolole/Gaborone.
+
+I am writing to formally introduce **CadeCodemy** (https://sunji-droid.github.io/cadecodemy/) — a zero-paywall, browser-based coding and data science academy designed to teach core programming and database engineering with zero setup friction.
+
+As BA ISAGO expands its applied science and business informatics programmes, CadeCodemy offers immediate pedagogical value as a free, supplementary practical lab for your undergraduate students:
+1. **Interactive Algorithmic & Complexity Labs:** Live simulations of Dijkstra shortest path on weighted facility networks (https://sunji-droid.github.io/cadecodemy/#/graphs) and comparative sorting mechanics (https://sunji-droid.github.io/cadecodemy/#/visualizer).
+2. **Relational Database Analytics & SQL Engine:** In-browser SQLite execution covering CTEs, window functions (`ROW_NUMBER`, `LAG`), aggregations, and date arithmetic.
+3. **Automated Code Quality Auditing:** Built-in `style50`-grade linting that evaluates PEP standards and indentation without requiring teacher manual marking.
+
+We would be delighted to explore collaborative pilot sessions or offer the platform as a supplementary practical revision workbench for your computing students.
+
+Could we schedule a brief 15-minute demonstration with your department?
+
+Warm regards,
+
+**Kabo Merapelo Onamile**  
+Founder & Curriculum Director, CadeCodemy  
+Molepolole / Gaborone, Botswana  
+Tel: +267 7461 4889 | Email: onamilekabo@gmail.com / mkonamile@gmail.com  
+LinkedIn: https://linkedin.com/in/kabo-onamile  
+
+**Attachments:**
+1. `Kabo_Merapelo_Onamile_CV_Europass.pdf`
+2. `Sample_CadeCodemy_Master_Diploma.pdf`
+
+---
+
+## EMAIL 12: Gaborone University College of Law and Professional Studies (GUC) — Public Health & Computing
+**To:** `enquiry@guc.ac.bw`  
+**Subject:** Curriculum Synergy: Health Informatics & Public Health M&E Data Modules (CadeCodemy)  
+
+Dear Academic Dean & Head of Public Health / Computing Programmes,
+
+My name is **Kabo Merapelo Onamile**. I am a Public Health professional and Software Engineer who recently completed two years serving as District M&E Focal Person within the Kweneng District Health Management Team (DHMT).
+
+I am writing to share **CadeCodemy** (https://sunji-droid.github.io/cadecodemy/), an educational platform featuring dedicated laboratories specifically combining **Public Health M&E** with **Health Information Systems (HIS)**.
+
+Given GUC's prominent Bachelor of Arts in Public Health, BSc in Health Promotion, and computing qualifications, CadeCodemy offers direct practical synergy for your students:
+1. **Real-World Epidemiological Telemetry:** Practical exercises based on genuine Kweneng District polio vaccination campaign coverage datasets (SITREPs, DHIS2 formats, and cold-chain temperature monitoring).
+2. **Forensic Database Investigation:** *The Great Molepolole Cold-Chain Mystery* (https://sunji-droid.github.io/cadecodemy/#/mystery) — teaching students to cross-reference gate RFID logs, cell tower records, and dispatch manifests using relational SQL queries.
+3. **Zero Setup & Zero Data Barriers:** Runs 100% in-browser on mobile phones and laptops via WebAssembly with zero server overhead.
+
+I would welcome the opportunity to discuss how these practical health data tools and computing sandboxes can be introduced to your public health and IT students as a hands-on digital laboratory.
+
+Respectfully yours,
+
+**Kabo Merapelo Onamile**  
+Public Health M&E Specialist & Systems Architect  
+Molepolole / Gaborone, Botswana  
+Tel: +267 7461 4889 | Email: mkonamile@gmail.com / onamilekabo@gmail.com  
+LinkedIn: https://linkedin.com/in/kabo-onamile  
+
+**Attachments:**
+1. `Kabo_Merapelo_Onamile_CV_Europass.pdf`
+2. `Sample_CadeCodemy_Master_Diploma.pdf`
