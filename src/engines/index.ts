@@ -331,6 +331,34 @@ export class SQLEngine implements Engine {
 
   private simulateQuery(query: string, start: number): ExecutionResult {
     const q = query.trim().toUpperCase();
+    if (q.includes('FROM DEPOT_STAFF')) {
+      return {
+        stdout: 'staff_id | full_name | role | phone_number | badge_id\n---+---+---+---+---\nS01 | Kgosiemang Tau | Cold-Chain Technician | +267-71234001 | B-901\nS02 | Lesego Dube | Logistical Auditor | +267-71234002 | B-902\nS03 | Mpho Molefe | Refrigerated Fleet Driver | +267-71234003 | B-903\nS04 | Neo Segokgo | Quality Assurance Nurse | +267-71234004 | B-904',
+        stderr: '',
+        executionTimeMs: Math.round(performance.now() - start)
+      };
+    }
+    if (q.includes('FROM SECURITY_GATE_LOGS')) {
+      return {
+        stdout: 'log_id | badge_id | event_type | timestamp\n---+---+---+---\nL101 | B-902 | exit | 2024-08-14 01:20:00\nL102 | B-901 | exit | 2024-08-14 02:12:00\nL103 | B-903 | exit | 2024-08-14 02:18:00\nL104 | B-904 | entry | 2024-08-14 02:45:00',
+        stderr: '',
+        executionTimeMs: Math.round(performance.now() - start)
+      };
+    }
+    if (q.includes('FROM PHONE_CALLS')) {
+      return {
+        stdout: 'call_id | caller_number | receiver_number | duration_seconds | timestamp\n---+---+---+---+---\nC501 | +267-71234001 | +267-71234003 | 42 | 2024-08-14 02:05:12\nC502 | +267-71234099 | +267-72000001 | 180 | 2024-08-14 02:08:45',
+        stderr: '',
+        executionTimeMs: Math.round(performance.now() - start)
+      };
+    }
+    if (q.includes('FROM VEHICLE_MANIFESTS')) {
+      return {
+        stdout: 'manifest_id | driver_name | vehicle_plate | destination_clinic | cargo\n---+---+---+---+---\nVM-81 | Mpho Molefe | B-881-ALM | Thamaga Sub-District Clinic | Diverted OPV 500 doses\nVM-82 | Kabelo Phiri | B-412-ABC | Gabane Health Post | Routine Syringes',
+        stderr: '',
+        executionTimeMs: Math.round(performance.now() - start)
+      };
+    }
     if (q.includes('FROM CLINICS')) {
       return {
         stdout: 'id | facility_name | district | target_pop | doses_administered\n---+---+---+---+---\n1 | Molepolole Main Clinic | Kweneng | 1500 | 1280\n2 | Thamaga Primary Clinic | Kweneng | 800 | 620\n3 | Lentsweletau Clinic | Kweneng | 450 | 410\n4 | Mogoditshane Health Post | Kweneng East | 2200 | 1690',
@@ -339,7 +367,7 @@ export class SQLEngine implements Engine {
       };
     }
     return {
-      stdout: 'Query parsed in sandbox simulator.\nColumns: result\nRow 1: OK',
+      stdout: 'Query executed successfully.\nColumns: result\nRow 1: OK',
       stderr: '',
       executionTimeMs: Math.round(performance.now() - start)
     };

@@ -15,6 +15,7 @@ import { DatasetsView } from './features/datasets/DatasetsView';
 import { SettingsView } from './features/settings/SettingsView';
 import { CapstoneRunner } from './features/capstones/CapstoneRunner';
 import { CodeReviewView } from './features/review/CodeReviewView';
+import { MysteryView } from './features/mystery/MysteryView';
 
 export const App: React.FC = () => {
   return (
@@ -27,6 +28,7 @@ export const App: React.FC = () => {
         <Route path="stages" element={<StagesView />} />
         <Route path="datasets" element={<DatasetsView />} />
         <Route path="review" element={<CodeReviewView />} />
+        <Route path="mystery" element={<MysteryView />} />
         <Route path="capstone/:trackId" element={<CapstoneRunner />} />
         <Route path="badges" element={<BadgesView />} />
         <Route path="certificates" element={<CertificatesView />} />

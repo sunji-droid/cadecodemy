@@ -42,6 +42,7 @@ export interface ProgressState {
   useStreakFreeze: () => boolean;
   recordCourseComplete: (courseId: string) => void;
   recordCapstonePass: (trackId: string) => void;
+  recordMysterySolved: (caseId: string) => void;
   unlockBadge: (badgeId: string) => void;
   resetAllProgress: () => void;
 }
@@ -252,6 +253,25 @@ export const useStore = create<ProgressState>()(
           unlockedBadges: { ...state.unlockedBadges, [badgeId]: new Date().toISOString() },
           xpEvents: [...state.xpEvents, event]
         });
+      },
+
+      recordMysterySolved: (caseId: string) => {
+        const state = get();
+        if (state.completedLessons[caseId]) return;
+
+        const event: XPEvent = {
+          id: `xp_${Date.now()}_mystery_${Math.random().toString(36).substring(2, 6)}`,
+          type: 'exercise_pass',
+          amount: 150,
+          sourceId: caseId,
+          timestamp: new Date().toISOString()
+        };
+
+        set({
+          completedLessons: { ...state.completedLessons, [caseId]: true },
+          xpEvents: [...state.xpEvents, event]
+        });
+        get().unlockBadge('data_detective');
       },
 
       resetAllProgress: () => {

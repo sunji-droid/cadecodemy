@@ -12,7 +12,8 @@ import {
   Database,
   Sliders,
   GitPullRequest,
-  ShieldAlert
+  ShieldAlert,
+  Search
 } from 'lucide-react';
 import styles from './Navigation.module.css';
 
@@ -62,6 +63,10 @@ export const Navigation: React.FC = () => {
           <NavLink to="/review" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <GitPullRequest className={styles.navIcon} size={20} />
             <span>Peer Review (Stage 5)</span>
+          </NavLink>
+          <NavLink to="/mystery" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <Search className={styles.navIcon} size={20} />
+            <span>SQL Mystery Case</span>
           </NavLink>
           <NavLink to="/capstone/python" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Award className={styles.navIcon} size={20} />
