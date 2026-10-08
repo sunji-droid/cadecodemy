@@ -13,7 +13,8 @@ import {
   Sliders,
   GitPullRequest,
   ShieldAlert,
-  Search
+  Search,
+  Binary
 } from 'lucide-react';
 import styles from './Navigation.module.css';
 
@@ -67,6 +68,10 @@ export const Navigation: React.FC = () => {
           <NavLink to="/mystery" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Search className={styles.navIcon} size={20} />
             <span>SQL Mystery Case</span>
+          </NavLink>
+          <NavLink to="/algorithms" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <Binary className={styles.navIcon} size={20} />
+            <span>Algorithms Lab</span>
           </NavLink>
           <NavLink to="/capstone/python" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Award className={styles.navIcon} size={20} />

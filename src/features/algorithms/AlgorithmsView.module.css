@@ -1,0 +1,252 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--stage-4-clay);
+  background-color: var(--bg-card);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.labTabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.labTab {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all var(--transition-fast);
+}
+
+.labTab:hover {
+  border-color: var(--accent-ocean);
+  background-color: var(--bg-card-hover);
+}
+
+.activeTab {
+  border-color: var(--stage-4-clay);
+  background-color: var(--bg-card-hover);
+  box-shadow: 0 0 0 1px var(--stage-4-clay);
+}
+
+.tabDifficulty {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--stage-4-clay);
+  text-transform: uppercase;
+}
+
+.tabTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.tabCategory {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.mainLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 960px) {
+  .mainLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.specPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.specHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.specHeader h2 {
+  font-size: 1.5rem;
+}
+
+.complexityBadges {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.compPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+
+.descriptionBox {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.theoryBox {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--stage-4-clay);
+  padding: 1.25rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.theoryBox h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--stage-4-clay);
+}
+
+.theoryBox p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.editorPanel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.editorBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.editorTitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.runBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--stage-4-clay);
+  color: #fff;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.runBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.codeArea {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--bg-code);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border: none;
+  outline: none;
+  resize: vertical;
+}
+
+.outputBox {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0.75rem 1rem;
+}
+
+.outputLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.outputPre {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--stage-2-fern);
+  margin-top: 0.25rem;
+  white-space: pre-wrap;
+}
+
+.testPassed {
+  background-color: rgba(78, 135, 82, 0.15);
+  border-top: 1.5px solid var(--stage-2-fern);
+  color: var(--stage-2-fern);
+  padding: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.testFailed {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-top: 1.5px solid var(--accent-red);
+  color: var(--accent-red);
+  padding: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
