@@ -24,11 +24,18 @@ export class JavaScriptEngine implements Engine {
         const originalLog = console.log;
         console.log = (...args) => logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '));
         // Safe evaluation for test environment
-        const fn = new Function('console', code);
-        fn({ log: console.log, warn: console.warn, error: console.error });
+        const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+        const fn = new AsyncFunction('console', code);
+        const result = await fn({ log: console.log, warn: console.warn, error: console.error });
+        // Allow microtasks to complete
+        await new Promise(r => setTimeout(r, 10));
         console.log = originalLog;
+        let finalOut = logs.join('\n');
+        if (!finalOut && result !== undefined) {
+          finalOut = typeof result === 'object' ? JSON.stringify(result) : String(result);
+        }
         return {
-          stdout: logs.join('\n'),
+          stdout: finalOut,
           stderr: '',
           executionTimeMs: Math.round(performance.now() - startTime)
         };
