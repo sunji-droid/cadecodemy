@@ -227,6 +227,50 @@ export const javascriptTrack: Track = {
       ],
       whyItMatters: 'Frontline tools like the Wheelchair Data Management System and NutriAssess rely on local storage to function when health facility connectivity drops.',
       estimatedMinutes: 8
+    },
+    {
+      id: 'js_06',
+      trackId: 'javascript',
+      order: 6,
+      stageNumber: 4,
+      title: 'REST APIs & Fetching Public Data',
+      objective: 'Consume real public REST endpoints, parse JSON payloads, and handle HTTP responses using async fetch().',
+      explanation: 'Modern web systems communicate across the internet using RESTful HTTP interfaces. The browser native fetch() function issues HTTP requests asynchronously. You inspect status codes (such as 200 OK or 404 Not Found), parse the response with .json(), and render dynamic records.',
+      codeSnippet: '// Fetching data from a public REST API\nasync function getCountryInfo(code) {\n  const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);\n  if (!res.ok) throw new Error("Network request failed");\n  const data = await res.json();\n  return data[0].name.common;\n}',
+      exercises: [
+        {
+          id: 'js_ex_06',
+          instruction: 'Define a function parseApiResponse that takes a raw JSON string, parses it using JSON.parse, and logs the name property.',
+          initialCode: 'const rawPayload = \'{"id": 72, "name": "Kweneng DHMT", "status": "active"}\';\n\nfunction parseApiResponse(jsonStr) {\n  const data = JSON.parse(jsonStr);\n  console.log(data.name);\n}\n\nparseApiResponse(rawPayload);',
+          solutionCode: 'const rawPayload = \'{"id": 72, "name": "Kweneng DHMT", "status": "active"}\';\n\nfunction parseApiResponse(jsonStr) {\n  const data = JSON.parse(jsonStr);\n  console.log(data.name);\n}\n\nparseApiResponse(rawPayload);',
+          hints: ['Parse with JSON.parse(jsonStr)', 'Access and print data.name']
+        }
+      ],
+      quiz: [
+        {
+          id: 'js_q_16',
+          question: 'What HTTP status code indicates a successful GET request?',
+          options: ['200 OK', '404 Not Found', '500 Server Error', '301 Redirect'],
+          correctIndex: 0,
+          explanation: 'HTTP 200 OK signals that the server successfully fulfilled the request and returned the requested representation.'
+        },
+        {
+          id: 'js_q_17',
+          question: 'What does the CORS (Cross-Origin Resource Sharing) header allow in public APIs?',
+          options: ['It encrypts the payload with RSA', 'It permits browser JavaScript on other domains to fetch the API data', 'It blocks all mobile phones', 'It slows down the connection'],
+          correctIndex: 1,
+          explanation: 'Access-Control-Allow-Origin headers tell modern browsers that client-side web apps are permitted to consume the API across different domains.'
+        },
+        {
+          id: 'js_q_18',
+          question: 'Why should public APIs that do not require an API key be preferred for student beginner sandboxes?',
+          options: ['They prevent secret credentials from being exposed in client-side source code and require zero signup friction', 'They run 10x faster', 'They delete local storage', 'They only work on desktop computers'],
+          correctIndex: 0,
+          explanation: 'Zero-auth public APIs eliminate API key exposure risks and allow learners to run requests immediately without sign-up hurdles.'
+        }
+      ],
+      whyItMatters: 'Integrating live REST APIs transforms static web scripts into dynamic applications that pull real health indicators, exchange rates, and geographical registries.',
+      estimatedMinutes: 8
     }
   ]
 };
