@@ -4,7 +4,7 @@ export const pythonTrack: Track = {
   id: 'python',
   title: 'Python for Data & Systems',
   badge: 'Python',
-  description: 'Master Python fundamentals, functional programming, data analysis with pandas, and clean software structure.',
+  description: 'Master Python fundamentals, functional programming, data analysis, and clean software structure.',
   accentColor: '#38BDF8',
   iconName: 'Code',
   lessons: [
@@ -15,15 +15,15 @@ export const pythonTrack: Track = {
       stageNumber: 1,
       title: 'Printing and Variables',
       objective: 'Assign variables and output text to the console with print().',
-      explanation: 'Variables store data values in memory. In Python, assignment uses the single equals sign (=). The print() function sends textual output to your standard console.',
-      codeSnippet: 'name = "Kweneng District"\ntarget = 1200\nprint(f"Target for {name}: {target}")',
+      explanation: 'Variables store data values in memory. In Python, assignment uses the single equals sign (=). The print() function outputs values to the screen.',
+      codeSnippet: 'facility = "Molepolole Clinic"\ntarget = 1200\nprint(facility)\nprint(target)',
       exercises: [
         {
           id: 'py_ex_01',
-          instruction: 'Create a variable named district with the value "Molepolole" and print it.',
-          initialCode: '# Write your code below\ndistrict = "Molepolole"\nprint(district)',
+          instruction: 'Assign the variable district with the string "Molepolole". On the next line, print the value of district.',
+          initialCode: '# 1. Create a variable called district and assign it the string "Molepolole"\n# 2. Print district\n',
           solutionCode: 'district = "Molepolole"\nprint(district)',
-          hints: ['Assign district = "Molepolole"', 'Call print(district)']
+          hints: ['Write district = "Molepolole"', 'Then on a new line write print(district)']
         }
       ],
       quiz: [
@@ -59,15 +59,15 @@ export const pythonTrack: Track = {
       stageNumber: 1,
       title: 'Numbers and Basic Arithmetic',
       objective: 'Calculate sums, differences, rates, and coverage ratios using numeric operations.',
-      explanation: 'Python supports integers (whole numbers) and floats (decimal values). Standard arithmetic operators include + (addition), - (subtraction), * (multiplication), and / (true division).',
-      codeSnippet: 'administered = 1280\ntarget = 1500\ncoverage_rate = (administered / target) * 100\nprint(f"Coverage: {coverage_rate:.1f}%")',
+      explanation: 'Python supports integers and floats. Basic arithmetic uses + (addition), - (subtraction), * (multiplication), and / (division).',
+      codeSnippet: 'target = 1500\nreached = 1280\nremaining = target - reached\nprint("Remaining:", remaining)',
       exercises: [
         {
           id: 'py_ex_02',
-          instruction: 'Calculate the drop-out count: subtract 1280 from 1500 and print the result.',
-          initialCode: 'target = 1500\nreached = 1280\nremaining = target - reached\nprint(remaining)',
+          instruction: 'Calculate the unreached population: assign target to 1500 and reached to 1280. Subtract reached from target, store the result in remaining, and print remaining.',
+          initialCode: 'target = 1500\nreached = 1280\n# Calculate remaining (target minus reached) and print it\n',
           solutionCode: 'target = 1500\nreached = 1280\nremaining = target - reached\nprint(remaining)',
-          hints: ['Use the subtraction operator -', 'Pass remaining to print()']
+          hints: ['Write remaining = target - reached', 'Call print(remaining)']
         }
       ],
       quiz: [
@@ -103,15 +103,15 @@ export const pythonTrack: Track = {
       stageNumber: 1,
       title: 'Lists and Indexing',
       objective: 'Organize related values into ordered lists and retrieve items by zero-based index.',
-      explanation: 'Lists store sequences of items inside square brackets. In Python, list indices start at 0. Negative indices count backward from the end.',
-      codeSnippet: 'facilities = ["Molepolole Main", "Thamaga", "Lentsweletau"]\nprint(facilities[0])\nprint(facilities[-1])',
+      explanation: 'Lists store collections of items inside square brackets []. In Python, indices start at 0. Use the .append() method to add new items to the end.',
+      codeSnippet: 'facilities = ["Thamaga", "Mogoditshane"]\nfacilities.append("Kopong")\nprint(facilities[0])',
       exercises: [
         {
           id: 'py_ex_03',
-          instruction: 'Add "Kopong" to the list of facilities and print the updated list.',
-          initialCode: 'facilities = ["Thamaga", "Mogoditshane"]\nfacilities.append("Kopong")\nprint(facilities)',
+          instruction: 'Add "Kopong" to the facilities list using .append(), then print the updated facilities list.',
+          initialCode: 'facilities = ["Thamaga", "Mogoditshane"]\n# Append "Kopong" to facilities and print the list\n',
           solutionCode: 'facilities = ["Thamaga", "Mogoditshane"]\nfacilities.append("Kopong")\nprint(facilities)',
-          hints: ['Use facilities.append("Kopong")', 'Print the result']
+          hints: ['Use facilities.append("Kopong")', 'Call print(facilities)']
         }
       ],
       quiz: [
@@ -147,15 +147,15 @@ export const pythonTrack: Track = {
       stageNumber: 2,
       title: 'Dictionaries and Structured Records',
       objective: 'Structure clinic and patient records using key-value pairs.',
-      explanation: 'Dictionaries hold key-value associations inside curly braces {}. Keys must be immutable types like strings or numbers. Access values with square brackets or the .get() method.',
-      codeSnippet: 'facility_report = {\n  "name": "Thamaga Clinic",\n  "target": 800,\n  "vaccinated": 620\n}\nprint(facility_report["name"])',
+      explanation: 'Dictionaries hold key-value associations inside curly braces {}. Values are accessed by specifying the key inside square brackets [].',
+      codeSnippet: 'record = {"facility": "Molepolole", "target": 1200}\nprint(record["facility"])',
       exercises: [
         {
           id: 'py_ex_04',
-          instruction: 'Retrieve the "vaccinated" count from the dictionary and print it.',
-          initialCode: 'record = {"name": "Lentsweletau", "vaccinated": 410}\nprint(record["vaccinated"])',
+          instruction: 'Extract the "vaccinated" value from the record dictionary and print it to the console.',
+          initialCode: 'record = {"name": "Lentsweletau", "vaccinated": 410}\n# Retrieve and print the value associated with key "vaccinated"\n',
           solutionCode: 'record = {"name": "Lentsweletau", "vaccinated": 410}\nprint(record["vaccinated"])',
-          hints: ['Use record["vaccinated"]', 'Print the value']
+          hints: ['Access the key with record["vaccinated"]', 'Wrap it in print(...)']
         }
       ],
       quiz: [
@@ -191,15 +191,15 @@ export const pythonTrack: Track = {
       stageNumber: 2,
       title: 'Conditional Statements (if / elif / else)',
       objective: 'Control program flow by testing indicator thresholds.',
-      explanation: 'Conditional logic checks Boolean truth values. If the condition evaluates to True, Python executes the indented block.',
-      codeSnippet: 'coverage = 78.1\nif coverage >= 95.0:\n    print("Target Achieved")\nelif coverage >= 80.0:\n    print("Moderate Coverage")\nelse:\n    print("Redeployment Required")',
+      explanation: 'Conditional logic checks Boolean truth values. Remember the colon (:) after conditions and 4 spaces for block indentation.',
+      codeSnippet: 'doses = 1200\nif doses > 1000:\n    print("High Volume")\nelse:\n    print("Standard Volume")',
       exercises: [
         {
           id: 'py_ex_05',
-          instruction: 'Write an if check: if doses > 1000 print "High Volume", else print "Standard Volume".',
-          initialCode: 'doses = 1200\nif doses > 1000:\n    print("High Volume")\nelse:\n    print("Standard Volume")',
+          instruction: 'Write an if/else conditional: if doses is greater than 1000, print "High Volume". Otherwise, print "Standard Volume".',
+          initialCode: 'doses = 1200\n# Check if doses is greater than 1000 and print the correct label\n',
           solutionCode: 'doses = 1200\nif doses > 1000:\n    print("High Volume")\nelse:\n    print("Standard Volume")',
-          hints: ['Check if doses > 1000', 'Ensure proper indentation']
+          hints: ['Start with if doses > 1000:', 'Indent 4 spaces for print("High Volume")', 'Add else: and print("Standard Volume")']
         }
       ],
       quiz: [
@@ -235,15 +235,15 @@ export const pythonTrack: Track = {
       stageNumber: 3,
       title: 'Functions and Modular Design',
       objective: 'Package reusable logic into clean, tested functions with return values.',
-      explanation: 'Functions bundle statements under a name with def. They take parameters as input and send output back with the return keyword.',
-      codeSnippet: 'def compute_coverage(doses, pop):\n    if pop == 0:\n        return 0.0\n    return round((doses / pop) * 100, 2)\n\nrate = compute_coverage(1280, 1500)\nprint(rate)',
+      explanation: 'Functions bundle statements under a name with def. They take arguments as input and send output back with the return keyword.',
+      codeSnippet: 'def add(a, b):\n    return a + b\n\nresult = add(10, 20)\nprint(result)',
       exercises: [
         {
           id: 'py_ex_06',
-          instruction: 'Complete the function to return the product of a and b.',
-          initialCode: 'def multiply(a, b):\n    return a * b\n\nprint(multiply(6, 7))',
+          instruction: 'Complete the multiply function so that it returns the product of a and b (using *). Then call multiply(6, 7) and print the output.',
+          initialCode: '# Define multiply(a, b), return their product, and print multiply(6, 7)\ndef multiply(a, b):\n    # Complete here\n    pass\n',
           solutionCode: 'def multiply(a, b):\n    return a * b\n\nprint(multiply(6, 7))',
-          hints: ['Use return a * b', 'Call multiply(6, 7)']
+          hints: ['Replace pass with return a * b', 'Outside the function, call print(multiply(6, 7))']
         }
       ],
       quiz: [

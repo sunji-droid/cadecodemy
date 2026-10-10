@@ -20,8 +20,8 @@ export const bashTrack: Track = {
       exercises: [
         {
           id: 'bash_ex_01',
-          instruction: 'Run pwd to output the current working directory.',
-          initialCode: 'pwd',
+          instruction: 'Type the command that prints your current working directory (pwd) and run it.',
+          initialCode: '# Type the command to print your working directory below\n',
           solutionCode: 'pwd',
           hints: ['Type pwd', 'Press Run']
         }
@@ -64,10 +64,10 @@ export const bashTrack: Track = {
       exercises: [
         {
           id: 'bash_ex_02',
-          instruction: 'Display the welcome note using cat welcome.txt.',
-          initialCode: 'cat welcome.txt',
+          instruction: 'Use the cat command to display the contents of the file welcome.txt.',
+          initialCode: '# Type the cat command targeting welcome.txt\n',
           solutionCode: 'cat welcome.txt',
-          hints: ['Run cat welcome.txt']
+          hints: ['Type cat welcome.txt', 'Click Run Code']
         }
       ],
       quiz: [
@@ -104,129 +104,129 @@ export const bashTrack: Track = {
       title: 'Output Redirection and Pipes (> and |)',
       objective: 'Direct output streams into files and chain commands together.',
       explanation: 'By default, shell commands write to standard output. The single angle bracket (>) redirects output into a file, overwriting existing contents. The double bracket (>>) appends output.',
-      codeSnippet: 'echo "Campaign Log: Day 1 Complete" > /home/learner/summary.txt\ncat /home/learner/summary.txt',
+      codeSnippet: 'echo "Campaign Log: Day 1 Complete" > summary.txt\ncat summary.txt',
       exercises: [
         {
           id: 'bash_ex_03',
-          instruction: 'Echo "Molepolole Clinic" and verify the output.',
-          initialCode: 'echo "Molepolole Clinic"',
+          instruction: 'Print the string "Molepolole Clinic" to the terminal using the echo command.',
+          initialCode: '# Print "Molepolole Clinic" using echo\n',
           solutionCode: 'echo "Molepolole Clinic"',
-          hints: ['Run echo "Molepolole Clinic"']
+          hints: ['Write echo "Molepolole Clinic"', 'Click Run Code']
         }
       ],
       quiz: [
         {
           id: 'bash_q_07',
           question: 'What is the difference between > and >> in Bash?',
-          options: ['> overwrites the file; >> appends to the end of the file', '> appends; >> overwrites', '> is for input; >> is for output', 'There is no difference'],
+          options: ['> overwrites the destination file; >> appends to the end', '>> deletes the file', '> is for folders only', 'They are synonyms'],
           correctIndex: 0,
-          explanation: '> creates or truncates the target file, while >> preserves existing lines and appends to the bottom.'
+          explanation: '> replaces existing file contents, while >> appends new lines to the end.'
         },
         {
           id: 'bash_q_08',
-          question: 'Where does standard error (stderr) go by default in Bash?',
-          options: ['To a temporary file', 'To the terminal display alongside stdout', 'It is discarded silently', 'To /dev/null'],
+          question: 'Where does standard error (stderr) route by default if not redirected?',
+          options: ['It is saved to /tmp/err', 'It prints to the terminal console', 'It is discarded silently', 'It halts the CPU'],
           correctIndex: 1,
-          explanation: 'Unless redirected via 2>, standard error outputs straight to the terminal screen.'
+          explanation: 'stderr defaults to the terminal console screen unless redirected with 2>.'
         },
         {
           id: 'bash_q_09',
-          question: 'How do you discard all output completely in Unix?',
-          options: ['redirect to /dev/null', 'use the delete keyword', 'redirect to /bin/trash', 'pipe to clear'],
+          question: 'How do you redirect both stdout and stderr to the same file?',
+          options: ['cmd > file 2>&1 or cmd &> file', 'cmd 1+2> file', 'cmd >> file 2', 'cmd |& file'],
           correctIndex: 0,
-          explanation: 'Directing streams to /dev/null discards written bytes.'
+          explanation: '&> or > file 2>&1 combines standard output and error into one stream.'
         }
       ],
-      whyItMatters: 'Automated nightly cron jobs pipe clinic report tables into dated log files for audit tracking.',
-      estimatedMinutes: 6
+      whyItMatters: 'Cron jobs and pipeline scripts write logs directly to dated files using redirection operators.',
+      estimatedMinutes: 7
     },
     {
       id: 'bash_04',
       trackId: 'bash',
       order: 4,
-      stageNumber: 2,
-      title: 'Pattern Filtering with grep and wc',
-      objective: 'Filter matching lines from datasets and count record rows.',
-      explanation: 'grep searches input for lines matching patterns. wc -l counts the number of lines, providing quick row counts for data validation.',
-      codeSnippet: 'cat /home/learner/data/survey.csv',
+      stageNumber: 3,
+      title: 'Pattern Matching with grep',
+      objective: 'Search through log files and filter specific facility records.',
+      explanation: 'grep scans input line by line and prints lines matching a pattern. Use flags like -i for case-insensitive search and -c to count matching lines.',
+      codeSnippet: 'grep "Kweneng" /home/learner/summary.txt',
       exercises: [
         {
           id: 'bash_ex_04',
-          instruction: 'Inspect the survey records with cat /home/learner/data/survey.csv.',
-          initialCode: 'cat /home/learner/data/survey.csv',
-          solutionCode: 'cat /home/learner/data/survey.csv',
-          hints: ['Run cat /home/learner/data/survey.csv']
+          instruction: 'Use grep to find lines containing "Molepolole" inside facilities.txt.',
+          initialCode: '# Search for "Molepolole" in facilities.txt using grep\n',
+          solutionCode: 'grep "Molepolole" facilities.txt',
+          hints: ['Write grep "Molepolole" facilities.txt', 'Click Run Code']
         }
       ],
       quiz: [
         {
           id: 'bash_q_10',
           question: 'Which flag makes grep case-insensitive?',
-          options: ['-i', '-c', '-v', '-s'],
-          correctIndex: 0,
-          explanation: 'The -i flag matches text regardless of lowercase or uppercase differences.'
+          options: ['-c', '-i', '-v', '-s'],
+          correctIndex: 1,
+          explanation: '-i ignores upper and lower case distinctions during matching.'
         },
         {
           id: 'bash_q_11',
-          question: 'What does grep -v do?',
-          options: ['Shows verbose debugging', 'Inverts the match, returning lines that do NOT match the pattern', 'Validates syntax', 'Prints the grep version'],
-          correctIndex: 1,
-          explanation: 'Inverted matching (-v) excludes rows containing the pattern, useful for dropping headers.'
+          question: 'Which grep flag inverts matches (returns lines that do NOT match)?',
+          options: ['-v', '-n', '-r', '-x'],
+          correctIndex: 0,
+          explanation: '-v outputs non-matching lines, useful for removing comments and blanks.'
         },
         {
           id: 'bash_q_12',
-          question: 'What does wc -l report?',
-          options: ['Word count', 'Line count', 'Character count', 'Longest line length'],
+          question: 'What does grep -c report?',
+          options: ['Byte offset', 'Line count of matching occurrences', 'Colorized output', 'File checksum'],
           correctIndex: 1,
-          explanation: 'wc -l counts newline characters to calculate the line count.'
+          explanation: '-c prints the total count of lines matching the given pattern.'
         }
       ],
-      whyItMatters: 'Command-line counting quickly validates whether exported CSV row counts match expected DHIS2 register totals.',
-      estimatedMinutes: 6
+      whyItMatters: 'Finding error codes and specific clinic identifiers in gigabytes of server logs is done in seconds with grep.',
+      estimatedMinutes: 8
     },
     {
       id: 'bash_05',
       trackId: 'bash',
       order: 5,
-      stageNumber: 3,
-      title: 'Bash Scripting: Variables, Arguments, and Loops',
-      objective: 'Write reproducible shell scripts with command-line arguments.',
-      explanation: 'Shell scripts automate routine terminal operations. Arguments are accessed using $1, $2, etc., and variables are assigned without spaces around the equals sign.',
-      codeSnippet: 'cat /home/learner/scripts/backup.sh',
+      stageNumber: 4,
+      title: 'Automated Scripts and Exit Codes',
+      objective: 'Write executable bash scripts with conditionals and check status codes.',
+      explanation: 'Every shell command returns an exit status code between 0 and 255. A code of 0 signals success; any non-zero value indicates an error. Check $? to inspect the exit code.',
+      codeSnippet: 'echo "Checking database..."\nexit_code=$?\necho "Status: $exit_code"',
       exercises: [
         {
           id: 'bash_ex_05',
-          instruction: 'Inspect the backup script using cat /home/learner/scripts/backup.sh.',
-          initialCode: 'cat /home/learner/scripts/backup.sh',
-          solutionCode: 'cat /home/learner/scripts/backup.sh',
-          hints: ['Run cat /home/learner/scripts/backup.sh']
+          instruction: 'Print the string "Batch Complete" using echo.',
+          initialCode: '# Print "Batch Complete" using echo\n',
+          solutionCode: 'echo "Batch Complete"',
+          hints: ['Write echo "Batch Complete"', 'Click Run Code']
         }
       ],
       quiz: [
         {
           id: 'bash_q_13',
-          question: 'What is the shebang line placed at the very top of a Bash script?',
-          options: ['#!/bin/bash', '// bash', '/* bash */', '#start bash'],
-          correctIndex: 0,
-          explanation: '#!/bin/bash informs the Unix kernel which interpreter to invoke.'
+          question: 'What special variable holds the exit status of the most recently executed command?',
+          options: ['$0', '$#', '$?', '$$'],
+          correctIndex: 2,
+          explanation: '$? stores the exit status integer of the previous foreground command.'
         },
         {
           id: 'bash_q_14',
-          question: 'Can you have spaces around the equals sign when assigning variables in Bash?',
-          options: ['Yes', 'No, spaces cause a command-not-found error', 'Only for strings', 'Only in zsh'],
+          question: 'What exit code represents successful completion without error in POSIX shells?',
+          options: ['1', '0', '-1', '200'],
           correctIndex: 1,
-          explanation: 'Bash treats tokens preceding spaces as commands; variable assignment must be name=value.'
+          explanation: 'Exit code 0 indicates clean success in Unix and POSIX operating systems.'
         },
         {
           id: 'bash_q_15',
-          question: 'Which variable represents the exit code of the most recently executed command in Bash?',
-          options: ['$0', '$?', '$$', '$!'],
+          question: 'What is the purpose of "set -e" at the top of a bash script?',
+          options: ['Echoes every line', 'Exits immediately if any command returns a non-zero error', 'Enables root access', 'Speeds up execution'],
           correctIndex: 1,
-          explanation: '$? stores the numeric return code (0 indicates success; non-zero indicates failure).'
+          explanation: 'set -e causes the script to abort on the first command failure, preventing cascade bugs.'
         }
       ],
-      whyItMatters: 'Automated CI/CD pipelines and backup routines run as executable bash scripts with error-code checks.',
-      estimatedMinutes: 7
+      whyItMatters: 'Continuous integration (CI) workflows like GitHub Actions pass or fail entirely based on the bash exit status 0.',
+      estimatedMinutes: 8
     }
   ]
 };

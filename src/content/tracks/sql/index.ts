@@ -20,8 +20,8 @@ export const sqlTrack: Track = {
       exercises: [
         {
           id: 'sql_ex_01',
-          instruction: 'Select all columns from the clinics table using the asterisk (*).',
-          initialCode: 'SELECT * FROM clinics;',
+          instruction: 'Write a SQL query that selects all columns from the clinics table using the asterisk (*) wildcard.',
+          initialCode: '-- Write a query to select all columns from clinics\n',
           solutionCode: 'SELECT * FROM clinics;',
           hints: ['Use SELECT *', 'Specify FROM clinics;']
         }
@@ -59,15 +59,15 @@ export const sqlTrack: Track = {
       stageNumber: 1,
       title: 'Filtering Rows with WHERE',
       objective: 'Filter rows based on exact matches, thresholds, and logical operators.',
-      explanation: 'The WHERE clause restricts results to rows matching Boolean conditions. Use comparison operators (=, !=, <, >, <=, >=) and combine them with AND and OR.',
+      explanation: 'The WHERE clause restricts results to rows matching Boolean conditions. Use comparison operators (=, !=, <, >, <=, >=) and text quotes.',
       codeSnippet: 'SELECT facility_name, doses_administered\nFROM clinics\nWHERE doses_administered > 500;',
       exercises: [
         {
           id: 'sql_ex_02',
-          instruction: 'Select all clinics where district equals "Kweneng".',
-          initialCode: 'SELECT facility_name, district\nFROM clinics\nWHERE district = "Kweneng";',
+          instruction: 'Select facility_name and district from clinics, but only for records where district equals "Kweneng".',
+          initialCode: '-- Write a query to select facility_name, district from clinics where district = "Kweneng"\n',
           solutionCode: 'SELECT facility_name, district\nFROM clinics\nWHERE district = "Kweneng";',
-          hints: ['Use WHERE district = "Kweneng"', 'Check column spelling']
+          hints: ['Start with SELECT facility_name, district', 'Add FROM clinics', 'Add WHERE district = "Kweneng";']
         }
       ],
       quiz: [
@@ -103,173 +103,173 @@ export const sqlTrack: Track = {
       stageNumber: 2,
       title: 'Aggregation with GROUP BY and HAVING',
       objective: 'Calculate summary metrics (COUNT, SUM, AVG) grouped by categories.',
-      explanation: 'Aggregate functions summarize multiple rows into a single scalar value. GROUP BY divides data into groups; HAVING filters groups after aggregation.',
-      codeSnippet: 'SELECT district, COUNT(*) AS facility_count, SUM(doses_administered) AS total_doses\nFROM clinics\nGROUP BY district\nHAVING total_doses > 1000;',
+      explanation: 'Aggregate functions summarize multiple rows into a single value. GROUP BY groups rows by a column; aggregate functions like SUM() calculate totals per group.',
+      codeSnippet: 'SELECT district, COUNT(*) AS count\nFROM clinics\nGROUP BY district;',
       exercises: [
         {
           id: 'sql_ex_03',
-          instruction: 'Group clinics by district and calculate the total doses administered.',
-          initialCode: 'SELECT district, SUM(doses_administered) AS total_doses\nFROM clinics\nGROUP BY district;',
+          instruction: 'Query the clinics table: select district and calculate SUM(doses_administered) AS total_doses, grouping by district.',
+          initialCode: '-- Group clinics by district and compute the SUM of doses_administered as total_doses\n',
           solutionCode: 'SELECT district, SUM(doses_administered) AS total_doses\nFROM clinics\nGROUP BY district;',
-          hints: ['Use SUM(doses_administered)', 'Add GROUP BY district']
+          hints: ['SELECT district, SUM(doses_administered) AS total_doses', 'FROM clinics', 'GROUP BY district;']
         }
       ],
       quiz: [
         {
           id: 'sql_q_07',
           question: 'What is the key difference between WHERE and HAVING?',
-          options: ['WHERE filters rows; HAVING filters aggregated groups', 'HAVING runs first', 'WHERE cannot use strings', 'There is no difference'],
-          correctIndex: 0,
-          explanation: 'WHERE filters records before aggregation; HAVING filters groups created by GROUP BY.'
+          options: ['WHERE is for numbers, HAVING is for text', 'WHERE filters before aggregation; HAVING filters aggregated groups', 'HAVING only runs in MySQL', 'WHERE is faster'],
+          correctIndex: 1,
+          explanation: 'WHERE evaluates row-by-row before grouping, whereas HAVING evaluates after GROUP BY aggregation.'
         },
         {
           id: 'sql_q_08',
-          question: 'What function counts non-null records in a column?',
-          options: ['TOTAL()', 'COUNT()', 'ROWS()', 'NUMBER()'],
+          question: 'What does COUNT(DISTINCT column) compute?',
+          options: ['Total rows including duplicates', 'The number of unique non-null entries in that column', 'The highest value', 'A random sample'],
           correctIndex: 1,
-          explanation: 'COUNT(column) counts the number of non-null entries.'
+          explanation: 'COUNT(DISTINCT) deduplicates entries before tallying.'
         },
         {
           id: 'sql_q_09',
-          question: 'Can you use aggregate functions in the WHERE clause?',
-          options: ['Yes, always', 'No, use HAVING for aggregated conditions', 'Only in SQLite', 'Only with numbers'],
+          question: 'Can you use an alias created in SELECT inside the WHERE clause?',
+          options: ['Always', 'Never in standard SQL, because WHERE executes before SELECT', 'Only with strings', 'Only with JOINs'],
           correctIndex: 1,
-          explanation: 'Aggregates are evaluated after WHERE, so they cannot be tested in WHERE.'
+          explanation: 'WHERE executes before SELECT creates the alias, causing reference errors in standard SQL.'
         }
       ],
-      whyItMatters: 'National and district indicators aggregate facility tallies into official coverage summaries.',
+      whyItMatters: 'District health profiles require aggregating hundreds of facility logs into consolidated summary totals.',
       estimatedMinutes: 8
     },
     {
       id: 'sql_04',
       trackId: 'sql',
       order: 4,
-      stageNumber: 2,
-      title: 'Relational Joins: INNER and LEFT JOIN',
-      objective: 'Connect multiple tables using shared keys without duplicating rows.',
-      explanation: 'Relational databases store related concepts across normalized tables. INNER JOIN matches rows where keys exist in both tables; LEFT JOIN preserves all left-hand records even when right-hand matches are absent.',
-      codeSnippet: 'SELECT c.facility_name, s.item, s.quantity\nFROM clinics c\nJOIN sales s ON c.id = s.order_id;',
+      stageNumber: 3,
+      title: 'Relational Joins (INNER, LEFT, RIGHT)',
+      objective: 'Combine records across multiple related tables using key relationships.',
+      explanation: 'Relational databases normalize tables to eliminate redundancy. JOIN clauses stitch related tables back together using matching keys (e.g. facility_id).',
+      codeSnippet: 'SELECT c.facility_name, s.batch_number\nFROM clinics c\nJOIN stock s ON c.id = s.facility_id;',
       exercises: [
         {
           id: 'sql_ex_04',
-          instruction: 'Perform an INNER JOIN between clinics and sales on clinic id and sales order_id.',
-          initialCode: 'SELECT c.facility_name, s.item\nFROM clinics c\nINNER JOIN sales s ON c.id = s.order_id;',
-          solutionCode: 'SELECT c.facility_name, s.item\nFROM clinics c\nINNER JOIN sales s ON c.id = s.order_id;',
-          hints: ['Use INNER JOIN sales s ON c.id = s.order_id', 'Run and check result']
+          instruction: 'Join clinics c and logs l on c.id = l.facility_id. Select c.facility_name and l.status.',
+          initialCode: '-- Write an INNER JOIN between clinics c and logs l on c.id = l.facility_id\n',
+          solutionCode: 'SELECT c.facility_name, l.status\nFROM clinics c\nJOIN logs l ON c.id = l.facility_id;',
+          hints: ['SELECT c.facility_name, l.status', 'FROM clinics c JOIN logs l ON c.id = l.facility_id;']
         }
       ],
       quiz: [
         {
           id: 'sql_q_10',
-          question: 'What rows does a LEFT JOIN keep if there is no match in the right table?',
-          options: ['It drops the left row', 'It preserves the left row and fills right columns with NULL', 'It produces a syntax error', 'It keeps only the right row'],
+          question: 'What happens to unmatched left-table rows in a LEFT JOIN?',
+          options: ['They are excluded', 'They appear in results with NULLs for right-table columns', 'They crash the query', 'They are duplicated'],
           correctIndex: 1,
-          explanation: 'LEFT JOIN retains all rows from the primary left table, replacing unmatched foreign columns with NULL.'
+          explanation: 'LEFT JOIN preserves every row from the left table, filling right-side columns with NULL if unmatched.'
         },
         {
           id: 'sql_q_11',
-          question: 'How do you perform an anti-join to find unmatched records?',
-          options: ['ANTI JOIN table', 'LEFT JOIN with WHERE right.id IS NULL', 'FULL JOIN only', 'EXCLUDE WHERE'],
+          question: 'What type of key uniquely identifies a single row in a relational table?',
+          options: ['Foreign key', 'Primary key', 'Candidate index', 'Unique hash'],
           correctIndex: 1,
-          explanation: 'A LEFT JOIN coupled with WHERE foreign_key IS NULL identifies records missing from the counterpart table.'
+          explanation: 'A Primary Key enforces unique non-null row identification.'
         },
         {
           id: 'sql_q_12',
-          question: 'What happens if the join condition is omitted in a query?',
-          options: ['The database defaults to primary key', 'A Cartesian product (CROSS JOIN) of all row combinations is produced', 'The query returns empty', 'It creates an index'],
+          question: 'What is a CROSS JOIN?',
+          options: ['A join between two databases', 'A Cartesian product pairing every row of table A with every row of table B', 'A join on dates', 'A faster INNER JOIN'],
           correctIndex: 1,
-          explanation: 'Omitting ON conditions multiplies every left row by every right row, creating an expensive Cartesian product.'
+          explanation: 'A CROSS JOIN produces Cartesian multiplication (m × n total rows).'
         }
       ],
-      whyItMatters: 'Matching facility registers with inventory logs identifies which sites have never received cold-chain supplies.',
-      estimatedMinutes: 8
+      whyItMatters: 'Clinic registers, vaccine stock manifests, and adverse incident reports live in separate tables connected by facility IDs.',
+      estimatedMinutes: 9
     },
     {
       id: 'sql_05',
       trackId: 'sql',
       order: 5,
-      stageNumber: 3,
-      title: 'Common Table Expressions (WITH / CTE)',
-      objective: 'Structure readable multi-stage queries using CTE blocks.',
-      explanation: 'A Common Table Expression (CTE) defines a named temporary result set with the WITH keyword. CTEs simplify complex queries by breaking calculations into sequential steps.',
-      codeSnippet: 'WITH DistrictStats AS (\n  SELECT district, SUM(doses_administered) AS total_doses\n  FROM clinics\n  GROUP BY district\n)\nSELECT district, total_doses\nFROM DistrictStats\nWHERE total_doses > 1500;',
+      stageNumber: 4,
+      title: 'Subqueries and Common Table Expressions (CTEs)',
+      objective: 'Deconstruct complex multi-step analysis into readable WITH statements.',
+      explanation: 'A Common Table Expression (CTE) defines a named temporary result set using WITH. It makes nested subqueries far easier to read and maintain.',
+      codeSnippet: 'WITH HighCoverage AS (\n  SELECT facility_name, doses_administered\n  FROM clinics\n  WHERE doses_administered > 1000\n)\nSELECT * FROM HighCoverage;',
       exercises: [
         {
           id: 'sql_ex_05',
-          instruction: 'Write a CTE named FacilityTotals and query from it.',
-          initialCode: 'WITH FacilityTotals AS (\n  SELECT facility_name, doses_administered\n  FROM clinics\n)\nSELECT * FROM FacilityTotals;',
-          solutionCode: 'WITH FacilityTotals AS (\n  SELECT facility_name, doses_administered\n  FROM clinics\n)\nSELECT * FROM FacilityTotals;',
-          hints: ['Define WITH FacilityTotals AS (...)', 'Select all columns from FacilityTotals']
+          instruction: 'Write a CTE named TopClinics that selects facility_name from clinics where doses_administered > 1000. In the final query, SELECT * FROM TopClinics.',
+          initialCode: '-- Define WITH TopClinics AS (...) and SELECT * FROM TopClinics\n',
+          solutionCode: 'WITH TopClinics AS (\n  SELECT facility_name\n  FROM clinics\n  WHERE doses_administered > 1000\n)\nSELECT * FROM TopClinics;',
+          hints: ['Start with WITH TopClinics AS (...)', 'Inside parentheses put SELECT facility_name FROM clinics WHERE doses_administered > 1000', 'Finish with SELECT * FROM TopClinics;']
         }
       ],
       quiz: [
         {
           id: 'sql_q_13',
-          question: 'What keyword opens a Common Table Expression?',
-          options: ['CTE', 'LET', 'WITH', 'DEFINE'],
+          question: 'What keyword initiates a Common Table Expression in SQL?',
+          options: ['CTE', 'CREATE TEMP', 'WITH', 'DECLARE'],
           correctIndex: 2,
-          explanation: 'The WITH keyword introduces a CTE in SQL.'
+          explanation: 'CTEs begin with the WITH keyword followed by the table alias and query definition.'
         },
         {
           id: 'sql_q_14',
-          question: 'Can you define multiple CTEs in a single query?',
-          options: ['No, only one', 'Yes, separated by commas after a single WITH keyword', 'Only in PostgreSQL', 'Only with UNION'],
+          question: 'Can you reference multiple CTEs in a single query?',
+          options: ['No, only one CTE per query', 'Yes, separating definitions with commas after a single WITH', 'Only in Oracle', 'Only with subqueries'],
           correctIndex: 1,
-          explanation: 'Multiple CTEs can be defined in sequence separated by commas under the initial WITH statement.'
+          explanation: 'Multiple CTEs can be defined sequentially separated by commas after one WITH keyword.'
         },
         {
           id: 'sql_q_15',
-          question: 'Why are CTEs preferred over deeply nested subqueries?',
-          options: ['They run 10x faster automatically', 'They read top-to-bottom like modular sentences', 'They ignore NULL values', 'They bypass locks'],
+          question: 'What is the primary architectural advantage of CTEs over nested subqueries?',
+          options: ['They run 10x faster always', 'Readability, modular reasoning, and top-down code flow', 'They consume zero memory', 'They bypass permissions'],
           correctIndex: 1,
-          explanation: 'CTEs structure query logic in clear linear stages rather than confusing nested parentheses.'
+          explanation: 'CTEs present top-down readable structure compared to deeply nested subqueries.'
         }
       ],
-      whyItMatters: 'Multi-indicator public health reports require calculating denominators and numerators in separate CTE stages before computing final percentages.',
+      whyItMatters: 'Epidemiological cohort pipelines and data audit checks require multi-stage data staging before final aggregation.',
       estimatedMinutes: 9
     },
     {
       id: 'sql_06',
       trackId: 'sql',
       order: 6,
-      stageNumber: 3,
-      title: 'Window Functions: ROW_NUMBER and OVER',
-      objective: 'Rank records within partitions without collapsing rows.',
-      explanation: 'Window functions perform calculations across sets of rows related to the current row without grouping them into a single summary line. The OVER clause defines the partitioning and ordering rules.',
-      codeSnippet: 'SELECT facility_name, district, doses_administered,\n  ROW_NUMBER() OVER(PARTITION BY district ORDER BY doses_administered DESC) as rank_in_district\nFROM clinics;',
+      stageNumber: 5,
+      title: 'Window Functions (ROW_NUMBER, RANK, LAG)',
+      objective: 'Compute running totals and rankings across partitions without collapsing rows.',
+      explanation: 'Unlike GROUP BY which collapses rows, Window Functions compute calculations across a set of rows while keeping each original row intact. They use the OVER() clause.',
+      codeSnippet: 'SELECT facility_name, doses_administered,\n  ROW_NUMBER() OVER(ORDER BY doses_administered DESC) AS rank_pos\nFROM clinics;',
       exercises: [
         {
           id: 'sql_ex_06',
-          instruction: 'Use ROW_NUMBER() OVER(ORDER BY doses_administered DESC) to rank facilities by volume.',
-          initialCode: 'SELECT facility_name, doses_administered,\n  ROW_NUMBER() OVER(ORDER BY doses_administered DESC) as overall_rank\nFROM clinics;',
-          solutionCode: 'SELECT facility_name, doses_administered,\n  ROW_NUMBER() OVER(ORDER BY doses_administered DESC) as overall_rank\nFROM clinics;',
-          hints: ['Use ROW_NUMBER() OVER(ORDER BY doses_administered DESC)', 'Name the column overall_rank']
+          instruction: 'Select facility_name, doses_administered, and calculate ROW_NUMBER() OVER(ORDER BY doses_administered DESC) AS rank_num from clinics.',
+          initialCode: '-- Compute ROW_NUMBER() OVER (ORDER BY doses_administered DESC) AS rank_num from clinics\n',
+          solutionCode: 'SELECT facility_name, doses_administered,\n  ROW_NUMBER() OVER(ORDER BY doses_administered DESC) AS rank_num\nFROM clinics;',
+          hints: ['Use ROW_NUMBER() OVER(ORDER BY doses_administered DESC) AS rank_num', 'Include FROM clinics;']
         }
       ],
       quiz: [
         {
           id: 'sql_q_16',
-          question: 'How do window functions differ from GROUP BY aggregations?',
-          options: ['Window functions collapse rows; GROUP BY does not', 'Window functions preserve individual rows; GROUP BY groups them into summary rows', 'Window functions only work on text', 'There is no difference'],
+          question: 'Which clause defines the grouping window in a window function?',
+          options: ['GROUP BY', 'PARTITION BY', 'WINDOW BY', 'SPLIT BY'],
           correctIndex: 1,
-          explanation: 'Window functions append calculation results to each original record without reducing the row count.'
+          explanation: 'PARTITION BY divides rows into groups without collapsing them into a single row.'
         },
         {
           id: 'sql_q_17',
-          question: 'What sub-clause inside OVER() divides data into ranking groups?',
-          options: ['GROUP BY', 'PARTITION BY', 'DIVIDE BY', 'SPLIT BY'],
+          question: 'What function fetches the value of a previous row within an ordered partition?',
+          options: ['LEAD()', 'LAG()', 'PREV()', 'PRIOR()'],
           correctIndex: 1,
-          explanation: 'PARTITION BY resets the window calculation independently within each specified subset.'
+          explanation: 'LAG() accesses data from a previous row in the partition without a self-join.'
         },
         {
           id: 'sql_q_18',
-          question: 'Which window function fetches values from the previous row?',
-          options: ['PREV()', 'PRIOR()', 'LAG()', 'BEFORE()'],
-          correctIndex: 2,
-          explanation: 'LAG() accesses data from a preceding record at a given physical offset.'
+          question: 'What is the difference between RANK() and DENSE_RANK() upon tied values?',
+          options: ['RANK() leaves gaps in sequence; DENSE_RANK() leaves no gaps', 'DENSE_RANK() skips numbers', 'They are identical', 'RANK() is deprecated'],
+          correctIndex: 0,
+          explanation: 'RANK() skips sequential numbers after ties (1, 1, 3); DENSE_RANK() does not skip (1, 1, 2).'
         }
       ],
-      whyItMatters: 'District health analysts use window functions like LAG and ROW_NUMBER to calculate month-over-month reporting growth and identify top-performing facilities.',
+      whyItMatters: 'Calculating facility performance rankings and period-over-period temperature drops requires window functions.',
       estimatedMinutes: 10
     }
   ]

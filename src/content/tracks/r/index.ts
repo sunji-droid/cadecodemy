@@ -15,15 +15,15 @@ export const rTrack: Track = {
       stageNumber: 1,
       title: 'Vectors and the Combine Function c()',
       objective: 'Create atomic vectors to hold numeric observations.',
-      explanation: 'In R, vectors are the basic building block. The combine function c() groups individual numbers into a 1D vector sequence.',
+      explanation: 'In R, vectors are the core building block. The combine function c() groups individual numbers into a 1D vector sequence. The standard assignment operator is <-.',
       codeSnippet: 'doses <- c(1280, 620, 410, 1690)\nprint(doses)',
       exercises: [
         {
           id: 'r_ex_01',
-          instruction: 'Create a vector of exam scores: c(85, 92, 78) and print it.',
-          initialCode: 'scores <- c(85, 92, 78)\nprint(scores)',
+          instruction: 'Create a numeric vector named scores with the values 85, 92, and 78 using c(85, 92, 78). Print the scores vector.',
+          initialCode: '# 1. Create scores <- c(85, 92, 78)\n# 2. Print scores\n',
           solutionCode: 'scores <- c(85, 92, 78)\nprint(scores)',
-          hints: ['Use scores <- c(85, 92, 78)', 'Call print(scores)']
+          hints: ['Write scores <- c(85, 92, 78)', 'Call print(scores)']
         }
       ],
       quiz: [
@@ -59,15 +59,15 @@ export const rTrack: Track = {
       stageNumber: 1,
       title: 'Data Frames and Column Indexing ($)',
       objective: 'Structure tabular health indicators in 2-dimensional data frames.',
-      explanation: 'Data frames arrange heterogeneous columns into tabular structures. Columns are accessed by name using the dollar sign ($) operator.',
-      codeSnippet: 'clinics_df <- data.frame(\n  facility = c("Molepolole", "Thamaga", "Lentsweletau"),\n  target = c(1500, 800, 450)\n)\nprint(clinics_df$facility)',
+      explanation: 'Data frames arrange columns into tabular structures. Columns are accessed by name using the dollar sign ($) operator.',
+      codeSnippet: 'clinics_df <- data.frame(\n  facility = c("Molepolole", "Thamaga"),\n  target = c(1500, 800)\n)\nprint(clinics_df$facility)',
       exercises: [
         {
           id: 'r_ex_02',
-          instruction: 'Extract the target column from clinics_df and print it.',
-          initialCode: 'clinics_df <- data.frame(facility = c("Thamaga", "Kopong"), target = c(800, 920))\nprint(clinics_df$target)',
+          instruction: 'Extract the target column from clinics_df using the $ operator (clinics_df$target) and print it.',
+          initialCode: 'clinics_df <- data.frame(facility = c("Thamaga", "Kopong"), target = c(800, 920))\n# Extract and print the target column from clinics_df\n',
           solutionCode: 'clinics_df <- data.frame(facility = c("Thamaga", "Kopong"), target = c(800, 920))\nprint(clinics_df$target)',
-          hints: ['Use clinics_df$target', 'Call print()']
+          hints: ['Use clinics_df$target', 'Call print(clinics_df$target)']
         }
       ],
       quiz: [
@@ -103,15 +103,15 @@ export const rTrack: Track = {
       stageNumber: 2,
       title: 'Tidy Data and Transformations: dplyr Workflows',
       objective: 'Filter rows and compute new calculated columns using the pipe operator.',
-      explanation: 'The tidyverse philosophy uses piped verbs to clean and transform datasets. Common verbs include filter() for rows and mutate() for creating new columns.',
-      codeSnippet: '# Piped transformation flow\ndoses <- c(1280, 620, 410, 1690)\nmean_doses <- mean(doses)\nprint(mean_doses)',
+      explanation: 'The tidyverse philosophy uses functions to clean and transform datasets. Functions like mean() calculate central tendencies across vectors.',
+      codeSnippet: 'doses <- c(1280, 620, 410, 1690)\navg_doses <- mean(doses)\nprint(avg_doses)',
       exercises: [
         {
           id: 'r_ex_03',
-          instruction: 'Compute the mean of scores <- c(80, 90, 70) and print it.',
-          initialCode: 'scores <- c(80, 90, 70)\nprint(mean(scores))',
+          instruction: 'Compute the arithmetic mean of the scores vector using mean(scores) and print the result.',
+          initialCode: 'scores <- c(80, 90, 70)\n# Calculate the mean of scores and print it\n',
           solutionCode: 'scores <- c(80, 90, 70)\nprint(mean(scores))',
-          hints: ['Call mean(scores)', 'Print the result']
+          hints: ['Write mean(scores)', 'Wrap in print(...)']
         }
       ],
       quiz: [
@@ -120,113 +120,113 @@ export const rTrack: Track = {
           question: 'Which dplyr verb creates new columns or modifies existing ones?',
           options: ['select()', 'filter()', 'mutate()', 'arrange()'],
           correctIndex: 2,
-          explanation: 'mutate() calculates and appends new columns while preserving existing rows.'
+          explanation: 'mutate() computes new variables while preserving existing data columns.'
         },
         {
           id: 'r_q_08',
-          question: 'What does the native pipe operator (|>) do in modern R (4.1+)?',
-          options: ['Passes the left-hand expression as the first argument to the right-hand function', 'Performs a bitwise OR', 'Creates a vector', 'Sorts values'],
-          correctIndex: 0,
-          explanation: 'The pipe (|>) passes left-side results forward into right-side functions.'
+          question: 'What does the native R pipe operator (|>) or magrittr pipe (%>%) accomplish?',
+          options: ['Executes SQL code', 'Passes the left-hand expression as the first argument to the right-hand function', 'Calculates standard deviation', 'Deletes empty rows'],
+          correctIndex: 1,
+          explanation: 'The pipe operator feeds the output of the preceding expression forward as the next function argument.'
         },
         {
           id: 'r_q_09',
-          question: 'Which function groups data for grouped summaries in dplyr?',
-          options: ['group_by()', 'aggregate()', 'split()', 'cluster()'],
-          correctIndex: 0,
-          explanation: 'group_by() prepares data frames for grouped summaries like summarize(mean = mean(x)).'
+          question: 'Which verb subsets rows based on condition logic in dplyr?',
+          options: ['slice()', 'filter()', 'extract()', 'pick()'],
+          correctIndex: 1,
+          explanation: 'filter() retains rows where the specified condition evaluates to TRUE.'
         }
       ],
-      whyItMatters: 'Transforming raw district records into publication-ready coverage tables requires clean piped transformations.',
+      whyItMatters: 'Transforming raw demographic data into standardized health metrics is the core role of statistical analysts.',
       estimatedMinutes: 8
     },
     {
       id: 'r_04',
       trackId: 'r',
       order: 4,
-      stageNumber: 2,
-      title: 'Statistical Visualisation: The Grammar of Graphics',
-      objective: 'Construct visual distributions using aesthetics and geometric layers.',
-      explanation: 'ggplot2 maps dataset variables to visual marks (geometries) like points, bars, and lines through aesthetic mappings (aes). Layers are composed using the plus (+) operator.',
-      codeSnippet: '# Scatter aesthetic concept\nx <- c(1, 2, 3, 4)\ny <- c(10, 25, 30, 45)\nsummary(y)',
+      stageNumber: 3,
+      title: 'Data Visualization Grammar: ggplot2 Concepts',
+      objective: 'Map variables to visual aesthetics (aes) and geometric layers (geoms).',
+      explanation: 'ggplot2 implements Leland Wilkinson\'s Grammar of Graphics. Plots are built in layers by specifying data, mapping aesthetics (aes), and adding geometric shapes (geom_point, geom_bar).',
+      codeSnippet: '# Basic layer grammar\n# ggplot(df, aes(x = target, y = reached)) + geom_point()\nsummary_stat <- c(min = 10, mean = 45, max = 80)\nprint(summary_stat)',
       exercises: [
         {
           id: 'r_ex_04',
-          instruction: 'Examine summary statistics of y with summary(y).',
-          initialCode: 'y <- c(10, 25, 30, 45)\nsummary(y)',
-          solutionCode: 'y <- c(10, 25, 30, 45)\nsummary(y)',
-          hints: ['Run summary(y)']
+          instruction: 'Create a named vector summary_stat with elements min = 10, mean = 45, and max = 80. Print summary_stat.',
+          initialCode: '# Define summary_stat <- c(min = 10, mean = 45, max = 80) and print it\n',
+          solutionCode: 'summary_stat <- c(min = 10, mean = 45, max = 80)\nprint(summary_stat)',
+          hints: ['Use c(min = 10, mean = 45, max = 80)', 'Print the vector']
         }
       ],
       quiz: [
         {
           id: 'r_q_10',
-          question: 'What operator combines layers in ggplot2?',
-          options: ['The plus sign (+)', 'The pipe operator (%>%)', 'The comma (,)', 'The arrow (<-)'],
-          correctIndex: 0,
-          explanation: 'ggplot2 uses the plus sign (+) to append geometric layers, scales, and themes to a plot object.'
+          question: 'In ggplot2, what function defines aesthetic mappings such as coordinates and color channels?',
+          options: ['map()', 'aes()', 'geom()', 'theme()'],
+          correctIndex: 1,
+          explanation: 'aes() links dataset variables to visual properties like x, y, fill, and color.'
         },
         {
           id: 'r_q_11',
-          question: 'Which aesthetic maps a numeric variable to horizontal position?',
-          options: ['y', 'x', 'color', 'size'],
-          correctIndex: 1,
-          explanation: 'aes(x = ...) assigns variables to the horizontal axis.'
+          question: 'What operator is used to add new layers together in a ggplot2 expression?',
+          options: ['%>%\', \'|>', '+', '&'],
+          correctIndex: 2,
+          explanation: 'ggplot2 uses the plus sign (+) to chain geometric and thematic layers onto the base canvas.'
         },
         {
           id: 'r_q_12',
-          question: 'What geometric layer creates a histogram in ggplot2?',
-          options: ['geom_bar()', 'geom_histogram()', 'geom_dist()', 'geom_density_rect()'],
+          question: 'Which geometric layer creates a scatter plot of continuous variables?',
+          options: ['geom_bar()', 'geom_point()', 'geom_line()', 'geom_hist()'],
           correctIndex: 1,
-          explanation: 'geom_histogram() bins continuous data into frequency bars.'
+          explanation: 'geom_point() renders two-dimensional Cartesian points representing paired observations.'
         }
       ],
-      whyItMatters: 'Producing publication-grade epidemic curves and district coverage distributions requires ggplot2.',
-      estimatedMinutes: 8
+      whyItMatters: 'Epidemiological curves, coverage choropleths, and disease trend charts in WHO SITREPs rely on ggplot2 aesthetics.',
+      estimatedMinutes: 9
     },
     {
       id: 'r_05',
       trackId: 'r',
       order: 5,
-      stageNumber: 3,
-      title: 'Hypothesis Testing: t-tests and Chi-Square',
-      objective: 'Evaluate differences between group means with statistical significance tests.',
-      explanation: 'Inferential statistics test whether observed group differences could have occurred by chance under the null hypothesis. t.test() evaluates numeric group means, while chisq.test() evaluates categorical frequency tables.',
-      codeSnippet: 'group_a <- c(82, 85, 90, 88)\ngroup_b <- c(70, 75, 72, 78)\n# Two-sample comparison\nmean(group_a) - mean(group_b)',
+      stageNumber: 4,
+      title: 'Statistical Testing & Linear Models (lm)',
+      objective: 'Fit linear regression models and interpret coefficients.',
+      explanation: 'Linear regression models the relationship between predictor variables and an outcome. In R, formula syntax uses the tilde operator: y ~ x.',
+      codeSnippet: 'x <- c(1, 2, 3, 4, 5)\ny <- c(2, 4, 6, 8, 10)\nmodel <- lm(y ~ x)\nprint(coef(model))',
       exercises: [
         {
           id: 'r_ex_05',
-          instruction: 'Compute the difference between mean(group_a) and mean(group_b).',
-          initialCode: 'group_a <- c(82, 85, 90, 88)\ngroup_b <- c(70, 75, 72, 78)\nprint(mean(group_a) - mean(group_b))',
-          solutionCode: 'group_a <- c(82, 85, 90, 88)\ngroup_b <- c(70, 75, 72, 78)\nprint(mean(group_a) - mean(group_b))',
-          hints: ['Subtract mean(group_b) from mean(group_a)', 'Print the result']
+          instruction: 'Create vectors x <- c(1, 2, 3) and y <- c(2, 4, 6). Fit a linear model using lm(y ~ x) and print coef(model).',
+          initialCode: 'x <- c(1, 2, 3)\ny <- c(2, 4, 6)\n# Fit linear model y ~ x and print coef(model)\n',
+          solutionCode: 'x <- c(1, 2, 3)\ny <- c(2, 4, 6)\nmodel <- lm(y ~ x)\nprint(coef(model))',
+          hints: ['Write model <- lm(y ~ x)', 'Call print(coef(model))']
         }
       ],
       quiz: [
         {
           id: 'r_q_13',
-          question: 'What does a p-value less than 0.05 traditionally indicate in hypothesis testing?',
-          options: ['The null hypothesis is proven true', 'Statistically significant evidence against the null hypothesis at the 5% level', 'The sample has zero measurement error', 'The data is completely normal'],
+          question: 'What does the tilde (~) symbolize in R modeling formulas?',
+          options: ['Multiplication', '"Is modeled by" (dependent ~ independent)', 'Approximately equal to', 'Division'],
           correctIndex: 1,
-          explanation: 'A p-value below alpha provides empirical evidence against the null hypothesis assumption.'
+          explanation: 'The tilde separates the dependent response variable from independent explanatory predictors.'
         },
         {
           id: 'r_q_14',
-          question: 'Which test evaluates independence between two categorical variables in R?',
-          options: ['t.test()', 'chisq.test()', 'cor.test()', 'var.test()'],
-          correctIndex: 1,
-          explanation: 'chisq.test() performs chi-squared contingency table tests of independence.'
+          question: 'What function displays R-squared, standard errors, and p-values of a fitted model?',
+          options: ['summary(model)', 'coef(model)', 'residuals(model)', 'anova(model)'],
+          correctIndex: 0,
+          explanation: 'summary() produces comprehensive regression diagnostics including R² and parameter p-values.'
         },
         {
           id: 'r_q_15',
-          question: 'What function fits linear regression models in R?',
-          options: ['linear()', 'regress()', 'lm()', 'fit()'],
-          correctIndex: 2,
-          explanation: 'lm(y ~ x, data = df) fits ordinary least squares linear regression models in R.'
+          question: 'What is a p-value threshold conventionally indicating statistical significance in epidemiological studies?',
+          options: ['p < 0.50', 'p < 0.05', 'p > 0.95', 'p = 1.00'],
+          correctIndex: 1,
+          explanation: 'A threshold of p < 0.05 is commonly used to reject the null hypothesis.'
         }
       ],
-      whyItMatters: 'Evaluating whether a supplementary immunisation campaign achieved significant coverage improvements over baseline requires inferential hypothesis testing.',
-      estimatedMinutes: 9
+      whyItMatters: 'Determining whether an intervention produced statistically significant decreases in disease incidence requires hypothesis testing.',
+      estimatedMinutes: 10
     }
   ]
 };

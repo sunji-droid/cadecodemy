@@ -15,15 +15,15 @@ export const javascriptTrack: Track = {
       stageNumber: 1,
       title: 'Variables: const and let',
       objective: 'Declare mutable and immutable identifiers using let and const.',
-      explanation: 'Modern JavaScript uses const for bindings that will not be reassigned and let for mutable variables. Avoid var due to hoisting pitfalls.',
-      codeSnippet: 'const clinicName = "Thamaga Health Centre";\nlet patientCount = 45;\npatientCount += 1;\nconsole.log(clinicName, patientCount);',
+      explanation: 'Modern JavaScript uses const for values that will never be reassigned and let for variables that change. Avoid var due to hoisting issues. Output data with console.log().',
+      codeSnippet: 'const clinic = "Thamaga Health Centre";\nlet count = 45;\ncount += 1;\nconsole.log(clinic, count);',
       exercises: [
         {
           id: 'js_ex_01',
-          instruction: 'Declare a const variable named country with "Botswana" and log it with console.log().',
-          initialCode: 'const country = "Botswana";\nconsole.log(country);',
+          instruction: 'Declare a const variable named country with the string "Botswana". On the next line, print it using console.log(country).',
+          initialCode: '// 1. Declare a const variable named country equal to "Botswana"\n// 2. Log it with console.log()\n',
           solutionCode: 'const country = "Botswana";\nconsole.log(country);',
-          hints: ['Use const country = "Botswana";', 'Call console.log(country);']
+          hints: ['Write const country = "Botswana";', 'Write console.log(country);']
         }
       ],
       quiz: [
@@ -59,15 +59,15 @@ export const javascriptTrack: Track = {
       stageNumber: 1,
       title: 'Array Transforms: map, filter, and reduce',
       objective: 'Transform and aggregate dataset arrays using functional methods.',
-      explanation: 'Array methods let you process collections without manual for loops. map transforms each item; filter picks items matching a test; reduce rolls up items into a single value.',
-      codeSnippet: 'const scores = [85, 92, 78, 64, 90];\nconst passing = scores.filter(s => s >= 75);\nconst total = passing.reduce((sum, s) => sum + s, 0);\nconsole.log("Passing total:", total);',
+      explanation: 'Array methods process collections cleanly: .filter() selects items matching a condition, .map() transforms elements, and .reduce() sums or accumulates values.',
+      codeSnippet: 'const nums = [12, 65, 34, 88, 51];\nconst big = nums.filter(n => n > 50);\nconsole.log(big); // [65, 88, 51]',
       exercises: [
         {
           id: 'js_ex_02',
-          instruction: 'Use .filter() on numbers to extract values greater than 50 and print them.',
-          initialCode: 'const nums = [12, 65, 34, 88, 51];\nconst filtered = nums.filter(n => n > 50);\nconsole.log(filtered);',
+          instruction: 'Given the nums array, use .filter() to create a new array containing only numbers greater than 50. Log the filtered array to console.',
+          initialCode: 'const nums = [12, 65, 34, 88, 51];\n// Use nums.filter() to keep numbers > 50 and log the result\n',
           solutionCode: 'const nums = [12, 65, 34, 88, 51];\nconst filtered = nums.filter(n => n > 50);\nconsole.log(filtered);',
-          hints: ['Use nums.filter(n => n > 50)', 'Log the filtered array']
+          hints: ['Use nums.filter(n => n > 50)', 'Store in a variable or log directly']
         }
       ],
       quiz: [
@@ -88,8 +88,8 @@ export const javascriptTrack: Track = {
         {
           id: 'js_q_06',
           question: 'Which method checks if at least one item satisfies a condition?',
-          options: ['every()', 'some()', 'includes()', 'find()'],
-          correctIndex: 1,
+          options: ['some()', 'every()', 'includes()', 'find()'],
+          correctIndex: 0,
           explanation: 'some() returns true if any element satisfies the predicate function.'
         }
       ],
@@ -103,80 +103,80 @@ export const javascriptTrack: Track = {
       stageNumber: 2,
       title: 'Objects and Destructuring',
       objective: 'Extract data cleanly from nested structures using modern object syntax.',
-      explanation: 'Destructuring unpacks properties from objects directly into distinct variables. This eliminates repetitive property accessors.',
-      codeSnippet: 'const facility = { id: 101, name: "Thamaga Clinic", doses: 620 };\nconst { name, doses } = facility;\nconsole.log(`${name}: ${doses} doses`);',
+      explanation: 'Destructuring unpacks properties from objects directly into distinct variables. This eliminates repetitive dot syntax.',
+      codeSnippet: 'const facility = { id: 101, name: "Thamaga Clinic", doses: 620 };\nconst { name, doses } = facility;\nconsole.log(name, doses);',
       exercises: [
         {
           id: 'js_ex_03',
-          instruction: 'Destructure title and author from the book object and log them.',
-          initialCode: 'const book = { title: "Clean Code", author: "Robert Martin" };\nconst { title, author } = book;\nconsole.log(title, author);',
+          instruction: 'Use object destructuring to extract title and author from the book object. Then log both variables separated by a space.',
+          initialCode: 'const book = { title: "Clean Code", author: "Robert Martin" };\n// Destructure title and author, then log them\n',
           solutionCode: 'const book = { title: "Clean Code", author: "Robert Martin" };\nconst { title, author } = book;\nconsole.log(title, author);',
-          hints: ['Use const { title, author } = book;', 'Log both variables']
+          hints: ['Write const { title, author } = book;', 'Call console.log(title, author);']
         }
       ],
       quiz: [
         {
           id: 'js_q_07',
           question: 'What does the spread operator (...) do when applied to an object?',
-          options: ['Deletes the object', 'Copies the enumerable properties into a new object', 'Freezes all keys', 'Converts it to an array'],
+          options: ['Deletes its keys', 'Copies its enumerable properties into a new object', 'Freezes it from edits', 'Converts it to JSON'],
           correctIndex: 1,
-          explanation: 'The spread operator shallow-copies key-value pairs into a new target object.'
+          explanation: 'Spread ({ ...obj }) shallow-copies properties into the newly created object.'
         },
         {
           id: 'js_q_08',
-          question: 'How do you assign a default value during destructuring if the key is missing?',
-          options: ['const { rate = 0 } = obj', 'const { rate: default 0 } = obj', 'const { rate || 0 } = obj', 'const { rate ?? 0 } = obj'],
+          question: 'What does optional chaining (?.) prevent in deep object traversal?',
+          options: ['TypeError: Cannot read property of undefined', 'Syntax errors', 'Infinite loops', 'Slow performance'],
           correctIndex: 0,
-          explanation: 'Default values in destructuring patterns use the equals sign syntax (key = fallback).'
+          explanation: 'Optional chaining returns undefined gracefully if a parent property is null or undefined.'
         },
         {
           id: 'js_q_09',
-          question: 'Can you rename a property while destructuring it?',
-          options: ['No', 'Yes, using the colon syntax: { name: facilityName }', 'Only with strings', 'Only in TypeScript'],
+          question: 'How do you rename a property during object destructuring?',
+          options: ['const { old as new } = obj;', 'const { old: newName } = obj;', 'const { newName <- old } = obj;', 'rename(obj.old, newName)'],
           correctIndex: 1,
-          explanation: 'The colon operator inside destructuring patterns renames the extracted variable.'
+          explanation: 'The colon syntax (const { property: alias } = obj) assigns the property value to a new variable name.'
         }
       ],
-      whyItMatters: 'Handling JSON payloads from DHIS2 or health databases requires clean destructuring to extract relevant indicator fields.',
-      estimatedMinutes: 6
+      whyItMatters: 'API responses return nested JSON structures that frontend components unpack through destructuring.',
+      estimatedMinutes: 7
     },
     {
       id: 'js_04',
       trackId: 'javascript',
       order: 4,
-      stageNumber: 2,
-      title: 'Promises and Async / Await',
-      objective: 'Handle asynchronous API requests and data fetching without callback hell.',
-      explanation: 'Asynchronous JavaScript coordinates network calls using Promises. The async and await keywords allow asynchronous code to read linearly like synchronous statements.',
-      codeSnippet: 'async function fetchHealthStats() {\n  const res = { status: 200, data: { coverage: 78.1 } };\n  return res.data;\n}\nfetchHealthStats().then(data => console.log("Coverage:", data.coverage));',
+      stageNumber: 3,
+      title: 'Asynchronous Programming (Promises & async/await)',
+      objective: 'Handle delayed network requests and concurrent tasks without blocking the UI.',
+      explanation: 'JavaScript runs in a single-threaded event loop. Asynchronous operations return Promises. Use async/await syntax to write asynchronous code that reads sequentially.',
+      codeSnippet: 'async function fetchStatus() {\n  return "System operational";\n}\n\nfetchStatus().then(status => console.log(status));',
       exercises: [
         {
           id: 'js_ex_04',
-          instruction: 'Write an async function named loadData that returns "Ready" and log the resolved promise.',
-          initialCode: 'async function loadData() {\n  return "Ready";\n}\nloadData().then(console.log);',
-          solutionCode: 'async function loadData() {\n  return "Ready";\n}\nloadData().then(console.log);',
-          hints: ['Define async function loadData()', 'Return "Ready"', 'Call loadData().then(console.log)']
+          instruction: 'Complete the async function getReport so it returns the string "Report Complete". Then call getReport() and log its resolved value.',
+          initialCode: '// Define async function getReport() returning "Report Complete"\nasync function getReport() {\n    // return string\n}\n\ngetReport().then(res => console.log(res));',
+          solutionCode: 'async function getReport() {\n  return "Report Complete";\n}\n\ngetReport().then(res => console.log(res));',
+          hints: ['Add return "Report Complete"; inside getReport()', 'Run the code']
         }
       ],
       quiz: [
         {
           id: 'js_q_10',
-          question: 'What does an async function always return?',
-          options: ['A callback', 'A Promise', 'An Object', 'A Boolean'],
+          question: 'What states can a JavaScript Promise exist in?',
+          options: ['started, running, ended', 'pending, fulfilled, rejected', 'waiting, active, closed', 'queued, dispatched, done'],
           correctIndex: 1,
-          explanation: 'Async functions always wrap their return values in a Promise.'
+          explanation: 'A Promise transitions from pending to either fulfilled (success) or rejected (failure).'
         },
         {
           id: 'js_q_11',
-          question: 'What keyword catches errors thrown inside an async/await block?',
-          options: ['catch block inside try/catch', 'onError', 'fallback', 'reject'],
-          correctIndex: 0,
-          explanation: 'Standard try/catch blocks intercept rejected Promises when using await.'
+          question: 'Can you use await outside an async function in traditional ES5 code?',
+          options: ['Always', 'Never; await requires an enclosing async function or top-level module context', 'Only inside for loops', 'Only with timeout'],
+          correctIndex: 1,
+          explanation: 'The await keyword pauses execution within an async function until the promise settles.'
         },
         {
           id: 'js_q_12',
-          question: 'What does Promise.all() do when supplied an array of promises?',
-          options: ['Runs only the fastest promise', 'Waits for all promises to resolve or rejects immediately on the first error', 'Cancels all promises', 'Runs them sequentially in series'],
+          question: 'What happens when one promise inside Promise.all() rejects?',
+          options: ['The rest continue quietly', 'Promise.all rejects immediately with that error', 'It retries 3 times', 'It returns null'],
           correctIndex: 1,
           explanation: 'Promise.all resolves when every input promise fulfills, or rejects as soon as one fails.'
         }
@@ -191,15 +191,15 @@ export const javascriptTrack: Track = {
       stageNumber: 3,
       title: 'Client-Side Storage: IndexedDB and LocalStorage',
       objective: 'Persist state locally for offline-first web reliability.',
-      explanation: 'Offline-ready applications cache data on the client device. LocalStorage stores small string key-values, while IndexedDB stores structured object stores for large datasets.',
-      codeSnippet: 'const reportKey = "draft_campaign_2026";\nconst payload = JSON.stringify({ district: "Kweneng", complete: true });\nconsole.log("Cached offline key:", reportKey);\nconsole.log("Payload:", payload);',
+      explanation: 'Offline-ready applications cache data on the client device. JSON.stringify() converts JavaScript objects into strings for local persistence, while JSON.parse() reconstructs them.',
+      codeSnippet: 'const user = { role: "M&E Officer", facility: "Thamaga" };\nconst text = JSON.stringify(user);\nconsole.log(text);',
       exercises: [
         {
           id: 'js_ex_05',
-          instruction: 'Serialize an object with JSON.stringify and print the stringified output.',
-          initialCode: 'const user = { role: "M&E Officer", facility: "Thamaga" };\nconst serialized = JSON.stringify(user);\nconsole.log(serialized);',
+          instruction: 'Convert the user object into a JSON string using JSON.stringify() and log it to the console.',
+          initialCode: 'const user = { role: "M&E Officer", facility: "Thamaga" };\n// Serialize user using JSON.stringify() and log the string\n',
           solutionCode: 'const user = { role: "M&E Officer", facility: "Thamaga" };\nconst serialized = JSON.stringify(user);\nconsole.log(serialized);',
-          hints: ['Use JSON.stringify(user)', 'Log serialized']
+          hints: ['Use JSON.stringify(user)', 'Log serialized with console.log()']
         }
       ],
       quiz: [
@@ -235,15 +235,15 @@ export const javascriptTrack: Track = {
       stageNumber: 4,
       title: 'REST APIs & Fetching Public Data',
       objective: 'Consume real public REST endpoints, parse JSON payloads, and handle HTTP responses using async fetch().',
-      explanation: 'Modern web systems communicate across the internet using RESTful HTTP interfaces. The browser native fetch() function issues HTTP requests asynchronously. You inspect status codes (such as 200 OK or 404 Not Found), parse the response with .json(), and render dynamic records.',
-      codeSnippet: '// Fetching data from a public REST API\nasync function getCountryInfo(code) {\n  const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);\n  if (!res.ok) throw new Error("Network request failed");\n  const data = await res.json();\n  return data[0].name.common;\n}',
+      explanation: 'Modern web systems communicate across the internet using RESTful HTTP interfaces. The browser native fetch() function issues HTTP requests asynchronously. You inspect status codes, parse JSON responses, and render records.',
+      codeSnippet: 'const jsonStr = \'{"id": 72, "name": "Kweneng DHMT"}\';\nconst parsed = JSON.parse(jsonStr);\nconsole.log(parsed.name);',
       exercises: [
         {
           id: 'js_ex_06',
-          instruction: 'Define a function parseApiResponse that takes a raw JSON string, parses it using JSON.parse, and logs the name property.',
-          initialCode: 'const rawPayload = \'{"id": 72, "name": "Kweneng DHMT", "status": "active"}\';\n\nfunction parseApiResponse(jsonStr) {\n  const data = JSON.parse(jsonStr);\n  console.log(data.name);\n}\n\nparseApiResponse(rawPayload);',
+          instruction: 'Complete the parseApiResponse function: parse the jsonStr string using JSON.parse(), and log data.name.',
+          initialCode: 'const rawPayload = \'{"id": 72, "name": "Kweneng DHMT", "status": "active"}\';\n\nfunction parseApiResponse(jsonStr) {\n  // 1. Parse jsonStr with JSON.parse\n  // 2. Log data.name\n}\n\nparseApiResponse(rawPayload);',
           solutionCode: 'const rawPayload = \'{"id": 72, "name": "Kweneng DHMT", "status": "active"}\';\n\nfunction parseApiResponse(jsonStr) {\n  const data = JSON.parse(jsonStr);\n  console.log(data.name);\n}\n\nparseApiResponse(rawPayload);',
-          hints: ['Parse with JSON.parse(jsonStr)', 'Access and print data.name']
+          hints: ['Inside the function, write const data = JSON.parse(jsonStr);', 'Then write console.log(data.name);']
         }
       ],
       quiz: [
