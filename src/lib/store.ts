@@ -36,7 +36,7 @@ export interface ProgressState {
   setTheme: (theme: 'dark' | 'light' | 'high-contrast') => void;
   setReducedMotion: (val: boolean) => void;
   recordLessonComplete: (lessonId: string, trackId: string) => void;
-  recordExercisePass: (exerciseId: string, firstTry: boolean) => void;
+  recordExercisePass: (exerciseId: string, attempts: number | boolean) => void;
   recordQuizPass: (lessonId: string) => void;
   recordStreakDay: () => void;
   useStreakFreeze: () => boolean;
@@ -102,33 +102,40 @@ export const useStore = create<ProgressState>()(
         get().recordStreakDay();
       },
 
-      recordExercisePass: (exerciseId: string, firstTry: boolean) => {
+      recordExercisePass: (exerciseId: string, attempts: number | boolean) => {
         const state = get();
         if (state.completedExercises[exerciseId]) return;
+
+        // Attempt decay XP: 1st try = 20 XP, 2nd try = 15 XP, 3+ tries = 10 XP floor
+        let payout = 15;
+        let isFirstTry = false;
+        if (typeof attempts === 'number') {
+          if (attempts <= 1) {
+            payout = 20;
+            isFirstTry = true;
+          } else if (attempts === 2) {
+            payout = 15;
+          } else {
+            payout = 10;
+          }
+        } else if (typeof attempts === 'boolean') {
+          isFirstTry = attempts;
+          payout = attempts ? 20 : 15;
+        }
 
         const events: XPEvent[] = [
           {
             id: `xp_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
             type: 'exercise_pass',
-            amount: 15,
+            amount: payout,
             sourceId: exerciseId,
             timestamp: new Date().toISOString()
           }
         ];
 
-        if (firstTry) {
-          events.push({
-            id: `xp_${Date.now()}_ft_${Math.random().toString(36).substring(2, 6)}`,
-            type: 'first_try_bonus',
-            amount: 5,
-            sourceId: exerciseId,
-            timestamp: new Date().toISOString()
-          });
-        }
-
         set({
           completedExercises: { ...state.completedExercises, [exerciseId]: true },
-          firstTryExercises: firstTry
+          firstTryExercises: isFirstTry
             ? { ...state.firstTryExercises, [exerciseId]: true }
             : state.firstTryExercises,
           xpEvents: [...state.xpEvents, ...events]

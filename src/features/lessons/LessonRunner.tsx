@@ -104,7 +104,8 @@ export const LessonRunner: React.FC = () => {
 
   const handleRunExercise = async () => {
     setIsRunning(true);
-    setAttemptCount(prev => prev + 1);
+    const newAttemptCount = attemptCount + 1;
+    setAttemptCount(newAttemptCount);
     const result = await executeCode(exerciseCode);
     setIsRunning(false);
     const out = result.stdout || result.stderr || '';
@@ -117,8 +118,7 @@ export const LessonRunner: React.FC = () => {
 
     if (!isStillStarter && noError && hasOutput) {
       setExercisePassed(true);
-      const isFirstTry = attemptCount === 0;
-      recordExercisePass(currentExercise.id, isFirstTry);
+      recordExercisePass(currentExercise.id, newAttemptCount);
       recordLessonComplete(currentLesson.id, currentTrack.id);
     } else if (isStillStarter) {
       setExercisePassed(false);
@@ -363,7 +363,9 @@ export const LessonRunner: React.FC = () => {
             {exercisePassed && (
               <div className={styles.successBanner}>
                 <CheckCircle2 size={18} />
-                <span>Exercise Passed! 15 XP awarded.</span>
+                <span>
+                  Exercise Passed! {attemptCount <= 1 ? '+20 XP (First Try Perfection!)' : attemptCount === 2 ? '+15 XP awarded' : '+10 XP awarded (Keep practicing!)'}
+                </span>
               </div>
             )}
 
