@@ -26,6 +26,7 @@ import { AccreditationGuideView } from './features/institutional/AccreditationGu
 import { DailyChallengeView } from './features/daily/DailyChallengeView';
 import { BugHuntView } from './features/bughunt/BugHuntView';
 import { AssessmentView } from './features/assessments/AssessmentView';
+import { OutbreakSimulatorView } from './features/simulator/OutbreakSimulatorView';
 
 export const App: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ export const App: React.FC = () => {
         <Route path="lesson/:lessonId" element={<LessonRunner />} />
         <Route path="playground" element={<Playground />} />
         <Route path="daily" element={<DailyChallengeView />} />
+        <Route path="simulator" element={<OutbreakSimulatorView />} />
         <Route path="bughunt" element={<BugHuntView />} />
         <Route path="assessment" element={<AssessmentView />} />
         <Route path="stages" element={<StagesView />} />

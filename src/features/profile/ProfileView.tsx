@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import { useStore, getTotalXP, getCurrentStage } from '../../lib/store';
-import { User, Shield, Moon, Sun, Contrast, RotateCcw, Check } from 'lucide-react';
+import { downloadPortfolioZip } from '../../lib/portfolioExporter';
+import { 
+  User, 
+  Shield, 
+  Moon, 
+  Sun, 
+  Contrast, 
+  RotateCcw, 
+  Check,
+  Download,
+  Code2,
+  HardDrive
+} from 'lucide-react';
 import styles from './ProfileView.module.css';
 
 export const ProfileView: React.FC = () => {
@@ -132,6 +144,48 @@ export const ProfileView: React.FC = () => {
             onChange={(e) => setReducedMotion(e.target.checked)}
             className={styles.checkbox}
           />
+        </div>
+      </section>
+
+      {/* Export to GitHub Portfolio & Offline Academy Pack */}
+      <section className={styles.settingsSection}>
+        <h3>Portfolio &amp; Offline Portability</h3>
+        <p className={styles.sectionDesc}>
+          Export your practical completions into a professional GitHub markdown repository, or download your offline data backup.
+        </p>
+        <div className={styles.exportGrid}>
+          <button 
+            type="button" 
+            className={styles.exportBtn}
+            onClick={() => downloadPortfolioZip(useStore.getState())}
+          >
+            <Code2 size={18} />
+            <div>
+              <strong>Export to GitHub Portfolio (README.md)</strong>
+              <span>Generates clean Markdown of your passed exercises and verifiable credentials.</span>
+            </div>
+          </button>
+
+          <button 
+            type="button" 
+            className={styles.exportBtn}
+            onClick={() => {
+              const data = JSON.stringify(useStore.getState(), null, 2);
+              const blob = new Blob([data], { type: 'application/json' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'cadecodemy_offline_state_backup.json';
+              a.click();
+              URL.revokeObjectURL(url);
+            }}
+          >
+            <HardDrive size={18} />
+            <div>
+              <strong>Backup Offline State (.json)</strong>
+              <span>Preserves your XP events, streaks, and certificates for air-gapped devices.</span>
+            </div>
+          </button>
         </div>
       </section>
 

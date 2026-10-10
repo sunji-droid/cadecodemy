@@ -23,6 +23,7 @@ import {
   ChevronDown,
   ChevronRight,
   Menu,
+  Activity,
   GraduationCap
 } from 'lucide-react';
 import styles from './Navigation.module.css';
@@ -63,6 +64,10 @@ export const Navigation: React.FC = () => {
           <NavLink to="/daily" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Sparkles className={styles.navIcon} size={20} />
             <span>Daily Micro-Challenge</span>
+          </NavLink>
+          <NavLink to="/simulator" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <Activity className={styles.navIcon} size={20} />
+            <span>Outbreak Simulator (SIR)</span>
           </NavLink>
           <NavLink to="/bughunt" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <GitPullRequest className={styles.navIcon} size={20} />
