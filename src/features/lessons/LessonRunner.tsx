@@ -110,11 +110,19 @@ export const LessonRunner: React.FC = () => {
     const out = result.stdout || result.stderr || '';
     setExerciseOutput(out);
 
-    if (!result.error && out.trim().length > 0) {
+    // Validate actual learner input vs starter placeholder
+    const isStillStarter = exerciseCode.trim() === (currentExercise.initialCode || '').trim();
+    const hasOutput = out.trim().length > 0;
+    const noError = !result.error && !result.stderr.toLowerCase().includes('error');
+
+    if (!isStillStarter && noError && hasOutput) {
       setExercisePassed(true);
       const isFirstTry = attemptCount === 0;
       recordExercisePass(currentExercise.id, isFirstTry);
       recordLessonComplete(currentLesson.id, currentTrack.id);
+    } else if (isStillStarter) {
+      setExercisePassed(false);
+      setExerciseOutput("Write your solution in the editor before running. The starter prompt alone does not pass the test.");
     }
   };
 
