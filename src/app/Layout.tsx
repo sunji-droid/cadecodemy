@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { Header } from './Header';
+import { AIChatWidget } from '../features/ai/AIChatWidget';
 import styles from './Layout.module.css';
 
 export const Layout: React.FC = () => {
@@ -15,6 +16,8 @@ export const Layout: React.FC = () => {
           <Outlet />
         </main>
         <Footer />
+        {/* Real Live LLM Assistant (OpenRouter / Groq / OpenAI) */}
+        <AIChatWidget />
       </div>
     </div>
   );
