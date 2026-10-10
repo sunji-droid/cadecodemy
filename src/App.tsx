@@ -23,6 +23,9 @@ import { GraphVisualizerView } from './features/graphs/GraphVisualizerView';
 import { ReferenceHubView } from './features/reference/ReferenceHubView';
 import { BitwiseLabView } from './features/bitwise/BitwiseLabView';
 import { AccreditationGuideView } from './features/institutional/AccreditationGuideView';
+import { DailyChallengeView } from './features/daily/DailyChallengeView';
+import { BugHuntView } from './features/bughunt/BugHuntView';
+import { AssessmentView } from './features/assessments/AssessmentView';
 
 export const App: React.FC = () => {
   return (
@@ -32,6 +35,9 @@ export const App: React.FC = () => {
         <Route path="tracks" element={<TracksView />} />
         <Route path="lesson/:lessonId" element={<LessonRunner />} />
         <Route path="playground" element={<Playground />} />
+        <Route path="daily" element={<DailyChallengeView />} />
+        <Route path="bughunt" element={<BugHuntView />} />
+        <Route path="assessment" element={<AssessmentView />} />
         <Route path="stages" element={<StagesView />} />
         <Route path="datasets" element={<DatasetsView />} />
         <Route path="review" element={<CodeReviewView />} />

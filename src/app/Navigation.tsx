@@ -60,6 +60,18 @@ export const Navigation: React.FC = () => {
             <Layers className={styles.navIcon} size={20} />
             <span>Tracks & Courses</span>
           </NavLink>
+          <NavLink to="/daily" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <Sparkles className={styles.navIcon} size={20} />
+            <span>Daily Micro-Challenge</span>
+          </NavLink>
+          <NavLink to="/bughunt" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <GitPullRequest className={styles.navIcon} size={20} />
+            <span>Spot The Bug Lab</span>
+          </NavLink>
+          <NavLink to="/assessment" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
+            <Briefcase className={styles.navIcon} size={20} />
+            <span>Interview Screening</span>
+          </NavLink>
           <NavLink to="/playground" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}>
             <Terminal className={styles.navIcon} size={20} />
             <span>Code Playground</span>
